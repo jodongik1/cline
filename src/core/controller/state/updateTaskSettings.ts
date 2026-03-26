@@ -1,5 +1,5 @@
 import { Empty } from "@shared/proto/cline/common"
-import { PlanActMode, UpdateTaskSettingsRequest } from "@shared/proto/cline/state"
+import { PlanActMode, planActModeFromJSON, UpdateTaskSettingsRequest } from "@shared/proto/cline/state"
 import { convertProtoToApiProvider } from "@shared/proto-conversions/models/api-configuration-conversion"
 import { Mode } from "@/shared/storage/types"
 import { Controller } from ".."
@@ -13,7 +13,8 @@ import { normalizeOpenaiReasoningEffort } from "./reasoningEffort"
  */
 export async function updateTaskSettings(controller: Controller, request: UpdateTaskSettingsRequest): Promise<Empty> {
 	const convertPlanActMode = (mode: PlanActMode): Mode => {
-		return mode === PlanActMode.PLAN ? "plan" : "act"
+		const normalized = typeof mode === "string" ? planActModeFromJSON(mode) : mode
+		return normalized === PlanActMode.PLAN ? "plan" : "act"
 	}
 
 	try {

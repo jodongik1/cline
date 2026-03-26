@@ -27,6 +27,9 @@ const aliasResolverPlugin = {
 			"@utils": path.resolve(__dirname, "src/utils"),
 			"@packages": path.resolve(__dirname, "src/packages"),
 		}
+		if (standalone) {
+			aliases["vscode"] = path.resolve(__dirname, "src/standalone/vscode-mock.ts")
+		}
 
 		// For each alias entry, create a resolver
 		Object.entries(aliases).forEach(([alias, aliasPath]) => {
@@ -204,7 +207,7 @@ const standaloneConfig = {
 	outfile: `${destDir}/cline-core.js`,
 	// These modules need to load files from the module directory at runtime,
 	// so they cannot be bundled.
-	external: ["vscode", "@grpc/reflection", "grpc-health-check", "better-sqlite3"],
+	external: ["@grpc/reflection", "grpc-health-check", "better-sqlite3"],
 }
 
 // E2E build script configuration

@@ -1,6 +1,6 @@
 import { searchWorkspaceFiles, searchWorkspaceFilesMultiroot } from "@services/search/file-search"
 import { telemetryService } from "@services/telemetry"
-import { FileSearchRequest, FileSearchResults, FileSearchType } from "@shared/proto/cline/file"
+import { FileSearchRequest, FileSearchResults, FileSearchType, fileSearchTypeFromJSON } from "@shared/proto/cline/file"
 import { convertSearchResultsToProtoFileInfos } from "@shared/proto-conversions/file/search-result-conversion"
 import { getWorkspacePath } from "@utils/path"
 import { Logger } from "@/shared/services/Logger"
@@ -15,10 +15,19 @@ import { Controller } from ".."
 export async function searchFiles(controller: Controller, request: FileSearchRequest): Promise<FileSearchResults> {
 	try {
 		// Map enum to string for the search service
+		// protobuf JSON에서 enum 기본값(0)은 생략되므로, undefined인 경우 FILE(0)으로 처리
+		let normalizedType: FileSearchType
+		if (request.selectedType === undefined || request.selectedType === null) {
+			normalizedType = FileSearchType.FILE
+		} else if (typeof request.selectedType === "string") {
+			normalizedType = fileSearchTypeFromJSON(request.selectedType)
+		} else {
+			normalizedType = request.selectedType
+		}
 		let selectedTypeString: "file" | "folder" | undefined
-		if (request.selectedType === FileSearchType.FILE) {
+		if (normalizedType === FileSearchType.FILE) {
 			selectedTypeString = "file"
-		} else if (request.selectedType === FileSearchType.FOLDER) {
+		} else if (normalizedType === FileSearchType.FOLDER) {
 			selectedTypeString = "folder"
 		}
 
@@ -62,9 +71,9 @@ export async function searchFiles(controller: Controller, request: FileSearchReq
 		// Track search results telemetry
 		// Determine search type for telemetry
 		let searchType: "file" | "folder" | "all" = "all"
-		if (request.selectedType === FileSearchType.FILE) {
+		if (normalizedType === FileSearchType.FILE) {
 			searchType = "file"
-		} else if (request.selectedType === FileSearchType.FOLDER) {
+		} else if (normalizedType === FileSearchType.FOLDER) {
 			searchType = "folder"
 		}
 

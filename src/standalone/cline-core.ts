@@ -3,6 +3,7 @@ import { ExternalDiffViewProvider } from "@hosts/external/ExternalDiffviewProvid
 import { ExternalWebviewProvider } from "@hosts/external/ExternalWebviewProvider"
 import { ExternalHostBridgeClientManager } from "@hosts/external/host-bridge-client-manager"
 import { retryOperation } from "@utils/retry"
+import * as fs from "fs"
 import * as path from "path"
 import { initialize, tearDown } from "@/common"
 import { SqliteLockManager } from "@/core/locks/SqliteLockManager"
@@ -18,6 +19,7 @@ import { setLockManager } from "./lock-manager"
 import { PROTOBUS_PORT, startProtobusService } from "./protobus-service"
 import { log } from "./utils"
 import { initializeContext } from "./vscode-context"
+import { startWebsocketServer } from "./webview-websocket"
 
 let globalLockManager: SqliteLockManager | undefined
 
@@ -71,26 +73,39 @@ async function main() {
 		// Now this will throw instead of exit if binding fails
 		const protobusAddress = await startProtobusService(webviewProvider.controller)
 
-		// Initialize SQLite lock manager for instance registration
+		// Start WebSocket Server to handle React UI -> cline-core.js messaging directly
+		startWebsocketServer(
+			webviewProvider.controller,
+			process.env.PROTOBUS_PORT ? Number.parseInt(process.env.PROTOBUS_PORT) + 1 : 26041,
+		)
+
+		// Initialize SQLite lock manager for instance registration.
+		// If better-sqlite3 native module fails to load (ABI mismatch), continue without locking.
 		const dbPath = `${DATA_DIR}/locks.db`
-		globalLockManager = new SqliteLockManager({
-			dbPath,
-			instanceAddress: protobusAddress,
-		})
+		try {
+			globalLockManager = new SqliteLockManager({
+				dbPath,
+				instanceAddress: protobusAddress,
+			})
 
-		// Make lock manager available to other modules
-		setLockManager(globalLockManager)
+			// Make lock manager available to other modules
+			setLockManager(globalLockManager)
 
-		await globalLockManager.registerInstance({
-			hostAddress,
-		})
-		log(`Registered instance in SQLite locks: ${protobusAddress}`)
+			await globalLockManager.registerInstance({
+				hostAddress,
+			})
+			log(`Registered instance in SQLite locks: ${protobusAddress}`)
 
-		// Clean up any orphaned folder locks from dead instances
-		globalLockManager.cleanupOrphanedFolderLocks()
+			// Clean up any orphaned folder locks from dead instances
+			globalLockManager.cleanupOrphanedFolderLocks()
 
-		// Mark instance healthy after services are up
-		globalLockManager.touchInstance()
+			// Mark instance healthy after services are up
+			globalLockManager.touchInstance()
+		} catch (lockErr) {
+			log(`WARNING: SQLite lock manager initialization failed: ${lockErr}`)
+			log(`Multi-instance locking is disabled. Services will continue without lock coordination.`)
+			globalLockManager = undefined
+		}
 
 		log("All services started successfully")
 	} catch (err) {
@@ -114,7 +129,24 @@ function setupHostProvider(extensionContext: any, extensionDir: string, dataDir:
 		return AuthHandler.getInstance().getCallbackUrl(path, preferredPort)
 	}
 	// cline-core expects the binaries to be unpacked in the directory where it is running.
-	const getBinaryLocation = async (name: string): Promise<string> => path.join(process.cwd(), name)
+	// Fallback: if not found in cwd, search system PATH (e.g., for ripgrep in JetBrains standalone mode).
+	const getBinaryLocation = async (name: string): Promise<string> => {
+		const localPath = path.join(process.cwd(), name)
+		try {
+			await fs.promises.access(localPath, fs.constants.X_OK)
+			return localPath
+		} catch {
+			// Not found in cwd, try system PATH
+			try {
+				const { execSync } = await import("child_process")
+				const systemPath = execSync(`which ${name}`, { encoding: "utf-8" }).trim()
+				if (systemPath) return systemPath
+			} catch {
+				// which failed, return original path
+			}
+			return localPath
+		}
+	}
 
 	HostProvider.initialize(
 		createWebview,

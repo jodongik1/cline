@@ -29,6 +29,16 @@ export abstract class ProtoBusClient {
 			// Set up one-time listener for this specific request
 			const handleResponse = (event: MessageEvent) => {
 				const message = event.data
+				if (message?.type === "grpc_response") {
+					console.log(
+						"[LISTENER-UNARY] rid:",
+						message.grpc_response?.request_id?.slice(0, 8),
+						"expected:",
+						requestId?.slice(0, 8),
+						"match:",
+						message.grpc_response?.request_id === requestId,
+					)
+				}
 				if (message.type === "grpc_response" && message.grpc_response?.request_id === requestId) {
 					// Remove listener once we get our response
 					window.removeEventListener("message", handleResponse)
@@ -65,11 +75,23 @@ export abstract class ProtoBusClient {
 		callbacks: Callbacks<TResponse>,
 	): () => void {
 		const requestId = uuidv4()
+		console.log("[STREAM] registered listener for:", requestId?.slice(0, 8))
 		// Set up listener for streaming responses
 		const handleResponse = (event: MessageEvent) => {
 			const message = event.data
+			if (message?.type === "grpc_response") {
+				console.log(
+					"[LISTENER-STREAM] rid:",
+					message.grpc_response?.request_id?.slice(0, 8),
+					"expected:",
+					requestId?.slice(0, 8),
+					"match:",
+					message.grpc_response?.request_id === requestId,
+				)
+			}
 			if (message.type === "grpc_response" && message.grpc_response?.request_id === requestId) {
 				if (message.grpc_response.message) {
+					console.log("[LISTENER-STREAM] ✅ match! calling onResponse")
 					// Process streaming message
 					const response = PLATFORM_CONFIG.decodeMessage(message.grpc_response.message, decodeResponse)
 					callbacks.onResponse(response)

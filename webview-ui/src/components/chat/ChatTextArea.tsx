@@ -704,6 +704,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 			(e: React.ChangeEvent<HTMLTextAreaElement>) => {
 				const newValue = e.target.value
 				const newCursorPosition = e.target.selectionStart
+
 				setInputValue(newValue)
 				setCursorPosition(newCursorPosition)
 				let showMenu = shouldShowContextMenu(newValue, newCursorPosition)

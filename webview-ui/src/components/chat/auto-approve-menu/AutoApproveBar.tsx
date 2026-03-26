@@ -1,6 +1,7 @@
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react"
 import { useRef, useState } from "react"
 import { useExtensionState } from "@/context/ExtensionStateContext"
+import { useTranslation } from "@/i18n/useTranslation"
 import { getAsVar, VSC_TITLEBAR_INACTIVE_FOREGROUND } from "@/utils/vscStyles"
 import AutoApproveModal from "./AutoApproveModal"
 import { ACTION_METADATA } from "./constants"
@@ -11,6 +12,7 @@ interface AutoApproveBarProps {
 
 const AutoApproveBar = ({ style }: AutoApproveBarProps) => {
 	const { autoApprovalSettings, yoloModeToggled, navigateToSettings } = useExtensionState()
+	const { t } = useTranslation()
 
 	const [isModalVisible, setIsModalVisible] = useState(false)
 	const buttonRef = useRef<HTMLDivElement>(null)
@@ -47,14 +49,14 @@ const AutoApproveBar = ({ style }: AutoApproveBarProps) => {
 		})
 
 		if (actionsToShow.length === 0) {
-			return <span className={baseClasses}>None</span>
+			return <span className={baseClasses}>{t("autoApprove.none")}</span>
 		}
 
 		return (
 			<span className={baseClasses}>
 				{actionsToShow.map((action, index) => (
 					<span key={action?.id}>
-						{action?.shortName}
+						{action?.shortNameKey ? t(action.shortNameKey) : action?.shortName}
 						{index < actionsToShow.length - 1 && ", "}
 					</span>
 				))}
@@ -100,11 +102,11 @@ const AutoApproveBar = ({ style }: AutoApproveBarProps) => {
 				/>
 
 				<div className="pt-4 pb-3.5 px-3.5">
-					<div className="text-sm mb-1">Auto-approve: YOLO</div>
+					<div className="text-sm mb-1">{t("autoApprove.yolo")}</div>
 					<div className="text-muted-foreground text-xs">
-						YOLO mode is enabled.{" "}
+						{t("autoApprove.yoloEnabled")}{" "}
 						<span className="underline cursor-pointer hover:text-foreground" onClick={handleNavigateToFeatures}>
-							Disable it in Settings
+							{t("autoApprove.yoloDisable")}
 						</span>
 						.
 					</div>
@@ -159,7 +161,7 @@ const AutoApproveBar = ({ style }: AutoApproveBarProps) => {
 				ref={buttonRef}
 				tabIndex={0}>
 				<div className="flex flex-nowrap items-center gap-1 min-w-0 flex-1">
-					<span className="whitespace-nowrap">Auto-approve:</span>
+					<span className="whitespace-nowrap">{t("autoApprove.label")}</span>
 					{getEnabledActionsText()}
 				</div>
 				{isModalVisible ? <ChevronDownIcon size={16} /> : <ChevronRightIcon size={16} />}

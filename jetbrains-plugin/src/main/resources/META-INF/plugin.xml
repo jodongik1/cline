@@ -1,0 +1,58 @@
+<idea-plugin>
+    <id>bot.cline.ide</id>
+    <name>Cline</name>
+    <vendor email="hello@cline.bot" url="https://cline.bot">Cline Bot Inc.</vendor>
+
+    <description><![CDATA[
+        <h2>Cline — 자율형 AI 코딩 에이전트</h2>
+        <p>Cline은 IDE에서 바로 사용할 수 있는 자율형 코딩 에이전트입니다. 파일 생성 및 편집, 터미널 명령 실행, 브라우저 활용 등 다양한 작업을 수행하며, 모든 단계에서 사용자의 승인을 받고 진행합니다.</p>
+
+        <h3>주요 기능</h3>
+        <ul>
+            <li><b>파일 작업</b> — 변경 사항 적용 전 diff 미리보기와 함께 파일 생성, 읽기, 편집, 삭제</li>
+            <li><b>터미널 명령</b> — 통합 터미널에서 직접 셸 명령 실행</li>
+            <li><b>컨텍스트 인식</b> — @멘션으로 파일, 폴더, Git 커밋, 진단 정보 참조</li>
+            <li><b>다양한 AI 제공자</b> — Anthropic Claude, OpenAI, Ollama, OpenRouter 등 다수 지원</li>
+            <li><b>Plan & Act 모드</b> — 전략 검토를 위한 Plan 모드, 자율 실행을 위한 Act 모드</li>
+            <li><b>커스텀 규칙</b> — 프로젝트별 규칙 및 워크플로우 설정 가능</li>
+        </ul>
+
+        <h3>요구 사항</h3>
+        <ul>
+            <li>시스템에 Node.js 18 이상 설치 필요</li>
+            <li>JCEF 지원 JetBrains 런타임 (대부분의 JetBrains IDE에 기본 포함)</li>
+        </ul>
+
+        <h3>시작하기</h3>
+        <p>설치 후 오른쪽 사이드바에서 <b>Cline</b> 도구 창을 열고, 원하는 AI 제공자를 설정한 뒤 대화를 시작하세요.</p>
+    ]]></description>
+
+    <change-notes><![CDATA[
+        <h3>1.0.0</h3>
+        <ul>
+            <li>JetBrains IDE 최초 릴리스</li>
+            <li>cline-core와 gRPC 호스트 브릿지 통합</li>
+            <li>VS Code 다크 테마 기반 JCEF 웹뷰</li>
+            <li>@멘션을 통한 파일/폴더 검색, Git 커밋, 진단 정보 지원</li>
+            <li>Plan/Act 모드 전환</li>
+        </ul>
+    ]]></change-notes>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Cline"
+                    anchor="right"
+                    factoryClass="bot.cline.ide.ClineToolWindowFactory"
+                    icon="AllIcons.General.Web"
+                    canCloseContents="true"
+                    dumbAware="true"/>
+
+        <postStartupActivity implementation="bot.cline.ide.ClineProjectActivity"/>
+
+        <notificationGroup id="Cline Notifications" displayType="BALLOON"/>
+    </extensions>
+
+    <actions>
+    </actions>
+</idea-plugin>

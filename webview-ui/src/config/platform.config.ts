@@ -47,6 +47,7 @@ declare global {
 		// !! Do not change the name of the handler without updating it on
 		// the JetBrains side as well. !!
 		standalonePostMessage?: (message: string) => void
+		__standaloneWebSocket?: WebSocket
 	}
 	function acquireVsCodeApi(): any
 }
@@ -64,13 +65,66 @@ const postMessageStrategies: Record<string, PostMessageFunction> = {
 		}
 	},
 	standalone: (message: any) => {
-		if (!window.standalonePostMessage) {
-			console.error("Standalone postMessage not found.")
-			return
+		// For standalone environments (e.g., JetBrains Plugin), use WebSocket to bypass the host JVM proxy directly to cline-core.js.
+		// Recreate the WebSocket if it has been closed or is closing (e.g., after a timeout or error).
+		const ws = window.__standaloneWebSocket
+		if (!ws || ws.readyState === WebSocket.CLOSED || ws.readyState === WebSocket.CLOSING) {
+			const newWs = new WebSocket("ws://localhost:26041")
+			window.__standaloneWebSocket = newWs
+			newWs.onmessage = (event) => {
+				try {
+					const msg = JSON.parse(event.data)
+					console.log(
+						"[WS→APP] msg type:",
+						msg?.type,
+						"request_id:",
+						msg?.grpc_response?.request_id,
+						"is_streaming:",
+						msg?.grpc_response?.is_streaming,
+					)
+					window.dispatchEvent(new MessageEvent("message", { data: msg }))
+				} catch (e) {
+					console.error("Failed to parse WebSocket message:", e)
+				}
+			}
+			// Track reconnect attempts to use progressive back-off
+			const attempt = ((window as any).__wsReconnectAttempt ?? 0) as number
+			newWs.onopen = () => {
+				console.log("[WS] Connected to cline-core")
+				;(window as any).__wsReconnectAttempt = 0
+			}
+			newWs.onerror = (e) => {
+				console.error("Standalone WebSocket error, will retry:", e)
+			}
+			newWs.onclose = () => {
+				window.__standaloneWebSocket = undefined
+				// Progressive back-off: 2s, 3s, 4s, max 5s — prevents tight reload loops
+				const nextAttempt = attempt + 1
+				const delay = Math.min(2000 + nextAttempt * 1000, 5000)
+				const maxAttempts = 15
+				if (nextAttempt <= maxAttempts) {
+					;(window as any).__wsReconnectAttempt = nextAttempt
+					console.log(`[WS] Connection closed, reloading in ${delay}ms (attempt ${nextAttempt}/${maxAttempts})...`)
+					setTimeout(() => {
+						window.location.reload()
+					}, delay)
+				} else {
+					console.error("[WS] Max reconnect attempts reached. Please restart the IDE.")
+				}
+			}
 		}
-		const json = JSON.stringify(message)
-		console.log("Standalone postMessage: " + json.slice(0, 200))
-		window.standalonePostMessage(json)
+
+		const activeWs = window.__standaloneWebSocket
+		if (!activeWs) return
+		if (activeWs.readyState === WebSocket.OPEN) {
+			console.log("[APP→WS] sending:", message?.type, message?.grpc_request?.method)
+			activeWs.send(JSON.stringify(message))
+		} else {
+			activeWs.addEventListener("open", () => {
+				console.log("[APP→WS] sending (delayed):", message?.type, message?.grpc_request?.method)
+				activeWs.send(JSON.stringify(message))
+			})
+		}
 	},
 }
 

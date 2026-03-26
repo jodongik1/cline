@@ -1,6 +1,7 @@
 import { ModelInfo } from "@shared/api"
 import { VSCodeDropdown, VSCodeOption } from "@vscode/webview-ui-toolkit/react"
 import styled from "styled-components"
+import { useTranslation } from "@/i18n/useTranslation"
 
 /**
  * Container for dropdowns that ensures proper z-index handling
@@ -46,14 +47,16 @@ OG Saoud Note:
 /**
  * A reusable component for selecting models from a dropdown
  */
-export const ModelSelector = ({ models, selectedModelId, onChange, zIndex, label = "Model" }: ModelSelectorProps) => {
+export const ModelSelector = ({ models, selectedModelId, onChange, zIndex, label }: ModelSelectorProps) => {
+	const { t } = useTranslation()
+	const resolvedLabel = label || t("api.model")
 	return (
 		<DropdownContainer className="dropdown-container" zIndex={zIndex}>
 			<label htmlFor="model-id">
-				<span className="font-medium">{label}</span>
+				<span className="font-medium">{resolvedLabel}</span>
 			</label>
 			<VSCodeDropdown className="w-full" id="model-id" onChange={onChange} value={selectedModelId}>
-				<VSCodeOption value="">Select a model...</VSCodeOption>
+				<VSCodeOption value="">{t("api.model.selectPlaceholder")}</VSCodeOption>
 				{Object.keys(models).map((modelId) => (
 					<VSCodeOption className="break-words whitespace-normal max-w-full" key={modelId} value={modelId}>
 						{modelId}

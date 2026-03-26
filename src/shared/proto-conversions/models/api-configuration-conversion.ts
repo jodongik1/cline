@@ -1,4 +1,5 @@
 import {
+	apiProviderFromJSON,
 	LiteLLMModelInfo,
 	OpenAiCompatibleModelInfo,
 	OpenRouterModelInfo,
@@ -335,6 +336,11 @@ function convertApiProviderToProto(provider: string | undefined): ProtoApiProvid
 
 // Convert proto ApiProvider to application ApiProvider
 export function convertProtoToApiProvider(provider: ProtoApiProvider): ApiProvider {
+	// JSON 인코딩(standalone/WebSocket)에서 enum이 문자열("OLLAMA")로 전달될 수 있으므로
+	// 숫자 enum으로 정규화합니다.
+	if (typeof provider === "string") {
+		provider = apiProviderFromJSON(provider)
+	}
 	switch (provider) {
 		case ProtoApiProvider.ANTHROPIC:
 			return "anthropic"

@@ -1,6 +1,6 @@
 import { getWorkspaceBasename } from "@core/workspace"
 import type { ToggleClineRuleRequest } from "@shared/proto/cline/file"
-import { RuleScope, ToggleClineRules } from "@shared/proto/cline/file"
+import { RuleScope, ruleScopeFromJSON, ToggleClineRules } from "@shared/proto/cline/file"
 import { telemetryService } from "@/services/telemetry"
 import { Logger } from "@/shared/services/Logger"
 import type { Controller } from "../index"
@@ -12,7 +12,16 @@ import type { Controller } from "../index"
  * @returns The updated Cline rule toggles
  */
 export async function toggleClineRule(controller: Controller, request: ToggleClineRuleRequest): Promise<ToggleClineRules> {
-	const { scope, rulePath, enabled } = request
+	const { rulePath, enabled } = request
+	// protobuf JSON에서 enum 기본값(0)은 생략되므로, undefined인 경우 LOCAL(0)으로 처리
+	let scope: RuleScope
+	if (request.scope === undefined || request.scope === null) {
+		scope = RuleScope.LOCAL
+	} else if (typeof request.scope === "string") {
+		scope = ruleScopeFromJSON(request.scope)
+	} else {
+		scope = request.scope
+	}
 
 	if (!rulePath || typeof enabled !== "boolean" || scope === undefined) {
 		Logger.error("toggleClineRule: Missing or invalid parameters", {

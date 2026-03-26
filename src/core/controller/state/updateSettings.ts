@@ -1,6 +1,12 @@
 import { buildApiHandler } from "@core/api"
 import { Empty } from "@shared/proto/cline/common"
-import { PlanActMode, McpDisplayMode as ProtoMcpDisplayMode, UpdateSettingsRequest } from "@shared/proto/cline/state"
+import {
+	mcpDisplayModeFromJSON,
+	PlanActMode,
+	McpDisplayMode as ProtoMcpDisplayMode,
+	planActModeFromJSON,
+	UpdateSettingsRequest,
+} from "@shared/proto/cline/state"
 import { convertProtoToApiProvider } from "@shared/proto-conversions/models/api-configuration-conversion"
 import { OpenaiReasoningEffort } from "@shared/storage/types"
 import { TelemetrySetting } from "@shared/TelemetrySetting"
@@ -79,9 +85,14 @@ export async function updateSettings(controller: Controller, request: UpdateSett
 
 		// Update MCP display mode setting
 		if (request.mcpDisplayMode !== undefined) {
+			// JSON 인코딩(standalone/WebSocket)에서 enum이 문자열로 전달될 수 있으므로 정규화
+			const normalizedMcpMode =
+				typeof request.mcpDisplayMode === "string"
+					? mcpDisplayModeFromJSON(request.mcpDisplayMode)
+					: request.mcpDisplayMode
 			// Convert proto enum to string type
 			let displayMode: McpDisplayMode
-			switch (request.mcpDisplayMode) {
+			switch (normalizedMcpMode) {
 				case ProtoMcpDisplayMode.RICH:
 					displayMode = "rich"
 					break
@@ -98,7 +109,8 @@ export async function updateSettings(controller: Controller, request: UpdateSett
 		}
 
 		if (request.mode !== undefined) {
-			const mode = request.mode === PlanActMode.PLAN ? "plan" : "act"
+			const normalizedMode = typeof request.mode === "string" ? planActModeFromJSON(request.mode) : request.mode
+			const mode = normalizedMode === PlanActMode.PLAN ? "plan" : "act"
 			controller.stateManager.setGlobalState("mode", mode)
 		}
 

@@ -1,7 +1,7 @@
 import { buildApiHandler } from "@core/api"
 
 import { Empty } from "@shared/proto/cline/common"
-import { PlanActMode, UpdateSettingsRequestCli } from "@shared/proto/cline/state"
+import { PlanActMode, planActModeFromJSON, UpdateSettingsRequestCli } from "@shared/proto/cline/state"
 import { convertProtoToApiProvider } from "@shared/proto-conversions/models/api-configuration-conversion"
 import { Settings } from "@shared/storage/state-keys"
 import { TelemetrySetting } from "@shared/TelemetrySetting"
@@ -23,7 +23,8 @@ import { normalizeOpenaiReasoningEffort } from "./reasoningEffort"
  */
 export async function updateSettingsCli(controller: Controller, request: UpdateSettingsRequestCli): Promise<Empty> {
 	const convertPlanActMode = (mode: PlanActMode): Mode => {
-		return mode === PlanActMode.PLAN ? "plan" : "act"
+		const normalized = typeof mode === "string" ? planActModeFromJSON(mode) : mode
+		return normalized === PlanActMode.PLAN ? "plan" : "act"
 	}
 
 	try {

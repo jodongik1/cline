@@ -1,4 +1,4 @@
-import { ClineRulesToggles, RuleScope, ToggleWorkflowRequest } from "@shared/proto/cline/file"
+import { ClineRulesToggles, RuleScope, ruleScopeFromJSON, ToggleWorkflowRequest } from "@shared/proto/cline/file"
 import { Logger } from "@/shared/services/Logger"
 import { Controller } from ".."
 
@@ -9,7 +9,17 @@ import { Controller } from ".."
  * @returns The updated workflow toggles
  */
 export async function toggleWorkflow(controller: Controller, request: ToggleWorkflowRequest): Promise<ClineRulesToggles> {
-	const { workflowPath, enabled, scope } = request
+	const { workflowPath, enabled } = request
+	// JSON 인코딩(standalone/WebSocket)에서 enum이 문자열로 전달될 수 있으므로 정규화
+	// protobuf JSON에서 enum 기본값(0)은 생략되므로, undefined인 경우 LOCAL(0)으로 처리
+	let scope: RuleScope
+	if (request.scope === undefined || request.scope === null) {
+		scope = RuleScope.LOCAL
+	} else if (typeof request.scope === "string") {
+		scope = ruleScopeFromJSON(request.scope)
+	} else {
+		scope = request.scope
+	}
 
 	if (!workflowPath || typeof enabled !== "boolean" || scope === undefined) {
 		Logger.error("toggleWorkflow: Missing or invalid parameters", {

@@ -27,12 +27,24 @@ export function initializeContext(clineDir?: string) {
 	const EXTENSION_DIR = path.join(INSTALL_DIR, "extension")
 	const EXTENSION_MODE = process.env.IS_DEV === "true" ? ExtensionMode.Development : ExtensionMode.Production
 
+	let packageJSON: any = {}
+	try {
+		packageJSON = readJson(path.join(EXTENSION_DIR, "package.json"))
+	} catch (e) {
+		try {
+			// Fallback for development if run directly from dist-standalone
+			packageJSON = readJson(path.join(INSTALL_DIR, "..", "package.json"))
+		} catch (e2) {
+			packageJSON = { version: "0.0.0" }
+		}
+	}
+
 	const extension: Extension<void> = {
 		id: ExtensionRegistryInfo.id,
 		isActive: true,
 		extensionPath: EXTENSION_DIR,
 		extensionUri: URI.file(EXTENSION_DIR),
-		packageJSON: readJson(path.join(EXTENSION_DIR, "package.json")),
+		packageJSON,
 		exports: undefined, // There are no API exports in the standalone version.
 		activate: async () => {},
 		extensionKind: ExtensionKind.UI,
