@@ -28,15 +28,15 @@ export const CheckpointError: React.FC<CheckpointErrorProps> = ({
 			<Alert title={messages.message} variant="danger">
 				<AlertDescription className="flex gap-2 justify-end">
 					{messages.showDisableButton && (
-						<Button aria-label="Disable Checkpoints" onClick={handleCheckpointSettingsClick} variant="ghost">
-							Disable Checkpoints
+						<Button aria-label="체크포인트 비활성화" onClick={handleCheckpointSettingsClick} variant="ghost">
+							체크포인트 비활성화
 						</Button>
 					)}
 					{messages.showGitInstructions && (
 						<a
 							className="text-link underline"
 							href="https://github.com/cline/cline/wiki/Installing-Git-for-Checkpoints">
-							See instructions
+							설치 방법 보기
 						</a>
 					)}
 				</AlertDescription>

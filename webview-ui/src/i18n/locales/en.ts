@@ -287,6 +287,256 @@ const en: Record<string, string> = {
 	"welcome.subtitle": "Your autonomous AI coding agent",
 	"welcome.whatCanIDo": "What can I do for you?",
 	"welcome.takeATour": "Take a Tour",
+
+	// Action Buttons (buttonConfig)
+	"buttons.retry": "Retry",
+	"buttons.startNewTask": "Start New Task",
+	"buttons.startNewTaskWithContext": "Start New Task with Context",
+	"buttons.proceedAnyways": "Proceed Anyways",
+	"buttons.approve": "Approve",
+	"buttons.reject": "Reject",
+	"buttons.save": "Save",
+	"buttons.runCommand": "Run Command",
+	"buttons.proceedWhileRunning": "Proceed While Running",
+	"buttons.resumeTask": "Resume Task",
+	"buttons.condenseConversation": "Condense Conversation",
+	"buttons.reportGitHubIssue": "Report GitHub issue",
+	"buttons.cancel": "Cancel",
+
+	// History Preview
+	"historyPreview.recent": "Recent",
+	"historyPreview.viewAll": "View All",
+	"historyPreview.viewAllAriaLabel": "View all history",
+	"historyPreview.favoritedAriaLabel": "Favorited",
+	"historyPreview.noRecentTasks": "No recent tasks",
+
+	// MCP Configuration View
+	"mcp.title": "MCP Servers",
+	"mcp.tab.marketplace": "Marketplace",
+	"mcp.tab.remoteServers": "Remote Servers",
+	"mcp.tab.configure": "Configure",
+
+	// MCP Server Row
+	"mcp.server.restart": "Restart Server",
+	"mcp.server.restarting": "Restarting...",
+	"mcp.server.delete": "Delete Server",
+	"mcp.server.deleting": "Deleting...",
+	"mcp.server.retryConnection": "Retry Connection",
+	"mcp.server.retrying": "Retrying...",
+	"mcp.server.tabs.tools": "Tools",
+	"mcp.server.tabs.resources": "Resources",
+	"mcp.server.tabs.prompts": "Prompts",
+	"mcp.server.autoApproveAll": "Auto-approve all tools",
+	"mcp.server.noTools": "No tools found",
+	"mcp.server.noResources": "No resources found",
+	"mcp.server.noPrompts": "No prompts found",
+	"mcp.server.requestTimeout": "Request Timeout",
+	"mcp.server.alwaysEnabled": "This server can't be disabled because it is enabled by your organization",
+	"mcp.server.authenticate": "Authenticate",
+	"mcp.tool.autoApprove": "Auto-approve",
+	"mcp.tool.parameters": "Parameters",
+	"mcp.tool.noDescription": "No description",
+	"mcp.resource.returns": "Returns",
+	"mcp.resource.noDescription": "No description",
+	"mcp.prompt.arguments": "Arguments",
+	"mcp.prompt.noDescription": "No description",
+
+	// MCP Configure View
+	"mcp.configure.remoteManaged": "Your organization manages some MCP servers",
+	"mcp.configure.openSettings": "Configure MCP Servers",
+	"mcp.configure.advancedSettings": "Advanced MCP Settings",
+	"mcp.noServersInstalled": "No MCP servers installed",
+
+	// MCP Timeout Options
+	"mcp.timeout.30s": "30 seconds",
+	"mcp.timeout.1m": "1 minute",
+	"mcp.timeout.5m": "5 minutes",
+	"mcp.timeout.10m": "10 minutes",
+	"mcp.timeout.30m": "30 minutes",
+	"mcp.timeout.1h": "1 hour",
+
+	// MCP Marketplace
+	"mcp.marketplace.loadError": "Failed to load marketplace data",
+	"mcp.marketplace.retry": "Retry",
+	"mcp.marketplace.searchPlaceholder": "Search MCPs...",
+	"mcp.marketplace.clearSearch": "Clear search",
+	"mcp.marketplace.filter": "Filter:",
+	"mcp.marketplace.allCategories": "All Categories",
+	"mcp.marketplace.sort": "Sort:",
+	"mcp.marketplace.sortMostInstalls": "Most Installs",
+	"mcp.marketplace.sortNewest": "Newest",
+	"mcp.marketplace.sortStars": "GitHub Stars",
+	"mcp.marketplace.sortName": "Name",
+	"mcp.marketplace.orgPreconfigured": "Your organization has pre-configured the available MCP servers",
+	"mcp.marketplace.noMatchingServers": "No matching MCP servers found",
+	"mcp.marketplace.noServers": "No MCP servers found in the marketplace",
+	"mcp.marketplace.install": "Install",
+	"mcp.marketplace.installing": "Installing...",
+	"mcp.marketplace.installed": "Installed",
+	"mcp.marketplace.requiresApiKey": "Requires API key",
+	"mcp.marketplace.submit": "Submit MCP Server",
+	"mcp.marketplace.submitDescription": "Help others discover great MCP servers by submitting an issue to",
+
+	// MCP Add Remote Server
+	"mcp.addRemote.serverNameRequired": "Server name is required",
+	"mcp.addRemote.serverUrlRequired": "Server URL is required",
+	"mcp.addRemote.invalidUrl": "Invalid URL format",
+	"mcp.addRemote.failedToAdd": "Failed to add server",
+	"mcp.addRemote.serverName": "Server Name",
+	"mcp.addRemote.serverUrl": "Server URL",
+	"mcp.addRemote.transportType": "Transport Type",
+	"mcp.addRemote.connecting": "Connecting...",
+	"mcp.addRemote.addServer": "Add Server",
+	"mcp.addRemote.editConfig": "Edit Configuration",
+	"mcp.addRemote.learnMore": "here.",
+	"mcp.addRemote.description": "Enter a name and URL endpoint to add a remote MCP server.",
+
+	// MCP Add Local Server
+	"mcp.addLocal.openSettings": "Open cline_mcp_settings.json",
+	"mcp.addLocal.learnMore": "here.",
+
+	// MCP Display Mode
+	"mcp.displayMode.plainText": "Plain Text",
+	"mcp.displayMode.richDisplay": "Rich Display",
+	"mcp.displayMode.markdown": "Markdown",
+
+	// MCP Response Display
+	"mcp.response.response": "Response",
+	"mcp.response.responseError": "Response (Error)",
+	"mcp.response.parseError": "Error parsing response:",
+
+	// Focus Chain
+	"focusChain.completed": "All tasks have been completed!",
+	"focusChain.label": "To-Do list",
+	"focusChain.newSteps": "New steps will be generated if you continue the task",
+	"focusChain.clickToEdit": "Click to edit to-do list in file",
+	"focusChain.collapse": "Collapse focus chain",
+	"focusChain.expand": "Expand focus chain",
+
+	// Browser Session
+	"browser.sessionStarted": "Browser Session Started",
+	"browser.usingBrowser": "Cline is using the browser:",
+	"browser.wantsBrowser": "Cline wants to use the browser:",
+	"browser.consoleLogs": "Console Logs",
+	"browser.noNewLogs": "(No new logs)",
+	"browser.previous": "Previous",
+	"browser.next": "Next",
+	"browser.screenshotAlt": "Browser screenshot",
+	"browser.action.label": "Browse Action:",
+	"browser.action.launchPrefix": "Launch browser at",
+	"browser.action.clickPrefix": "Click",
+	"browser.action.typePrefix": "Type",
+	"browser.action.scrollDown": "Scroll down",
+	"browser.action.scrollUp": "Scroll up",
+	"browser.action.close": "Close browser",
+
+	// Errors
+	"error.loggedOut": "Whoops looks like you're logged out \u2013 click below to sign in",
+	"error.signIn": "Sign in to Cline",
+	"error.clickRetry": '(Click "Retry" below)',
+	"error.powershellPrefix": "It seems like you're having Windows PowerShell issues, please see this",
+	"error.powershellLink": "troubleshooting guide",
+	"error.powershellSuffix": ".",
+	"error.diffError": "The model used search patterns that don't match anything in the file. Retrying...",
+	"error.clineignorePrefix": "Cline tried to access",
+	"error.clineignoreSuffix": "which is blocked by the .clineignore file.",
+
+	// Credit Limit Error
+	"creditLimit.currentBalance": "Current Balance:",
+	"creditLimit.totalSpent": "Total Spent:",
+	"creditLimit.totalPromotions": "Total Promotions:",
+	"creditLimit.buyCredits": "Buy Credits",
+	"creditLimit.retryRequest": "Retry Request",
+
+	// Common UI
+	"common.copy": "Copy",
+	"common.copied": "Copied",
+	"common.quoteSelection": "Quote selection",
+	"common.quoteSelectionInReply": "Quote selection in reply",
+
+	// Alert Dialog
+	"dialog.unsavedChanges.title": "Unsaved Changes",
+	"dialog.unsavedChanges.description": "You have unsaved changes. Are you sure you want to discard them?",
+	"dialog.unsavedChanges.confirm": "Discard Changes",
+	"dialog.unsavedChanges.save": "Save & Continue",
+	"dialog.cancel": "Cancel",
+
+	// Slash Command Menu
+	"slashMenu.defaultCommands": "Default Commands",
+	"slashMenu.workflowCommands": "Workflow Commands",
+	"slashMenu.mcpPrompts": "MCP Prompts",
+	"slashMenu.noResults": "No matching commands found",
+	"slashMenu.ariaLabel": "Slash commands",
+
+	// Context Menu
+	"contextMenu.problems": "Problems",
+	"contextMenu.terminal": "Terminal",
+	"contextMenu.pasteUrl": "Paste URL to fetch contents",
+	"contextMenu.noResults": "No results found",
+	"contextMenu.gitCommits": "Git Commits",
+	"contextMenu.addFile": "Add File",
+	"contextMenu.addFolder": "Add Folder",
+
+	// Thinking Row
+	"thinking.title": "Thinking",
+
+	// Hook Message
+	"hook.label": "Hook:",
+	"hook.status.running": "Running",
+	"hook.status.failed": "Failed",
+	"hook.status.aborted": "Aborted",
+	"hook.status.completed": "Completed",
+	"hook.status.unknown": "Unknown",
+	"hook.abort": "Abort",
+	"hook.timeout": "Took longer than 30 seconds. Check for infinite loops or add timeouts to network requests.",
+	"hook.invalidJson": "Hook returned invalid JSON. See error details below for more information.",
+
+	// Task Feedback
+	"feedback.helpful": "This was helpful",
+	"feedback.notHelpful": "This wasn't helpful",
+
+	// User Message (Checkpoints)
+	"checkpoint.restoreAll": "Restore All",
+	"checkpoint.restoreAllTitle": "Restore both the chat and workspace files to this checkpoint and send your edited message",
+	"checkpoint.restoreChat": "Restore Chat",
+	"checkpoint.restoreChatTitle": "Restore just the chat to this checkpoint and send your edited message",
+
+	// MCP Server Toggle Modal
+	"mcpModal.manage": "Manage MCP Servers",
+	"mcpModal.hide": "Hide MCP Servers",
+	"mcpModal.show": "Show MCP Servers",
+	"mcpModal.title": "MCP Servers",
+	"mcpModal.goToSettings": "Go to MCP server settings",
+
+	// Telemetry Banner
+	"telemetry.banner.title": "Help Improve Cline",
+	"telemetry.banner.subtitle": "(and access experimental features)",
+	"telemetry.banner.description":
+		"Cline collects error and usage data to help us fix bugs and improve the extension. No code, prompts, or personal information is ever sent.",
+	"telemetry.banner.turnOffPrefix": "You can turn this setting off in ",
+	"telemetry.banner.settings": "settings",
+	"telemetry.banner.turnOffSuffix": ".",
+	"telemetry.banner.closeAriaLabel": "Close banner and enable telemetry",
+
+	// Feature Tips
+	"featureTip.label": "Tip:",
+	"featureTip.0": 'Enable "Double-Check Completion" in settings to have Cline verify its work before finishing a task.',
+	"featureTip.1": "Add a .clinerules file to your project root to give Cline project-specific instructions.",
+	"featureTip.2": "Switch to Plan Mode to discuss and plan an approach before Cline takes action.",
+	"featureTip.3": "Use @ in the chat input to add files, folders, or URLs as context for your task.",
+	"featureTip.4": "Set up MCP Servers to give Cline access to external tools and APIs.",
+	"featureTip.5": "Cline creates checkpoints after changes \u2014 you can always restore to a previous state.",
+	"featureTip.6": "Use /compact to condense long conversations and free up context window space.",
+	"featureTip.7": "Enable auto-approve for read-only tools like file reads to speed up exploration.",
+	"featureTip.8": "Use the quote button to select text from Cline's response and reference it in your reply.",
+	"featureTip.9": "You can drag and drop images into the chat to share screenshots with Cline.",
+	"featureTip.10": "Cline can browse websites \u2014 ask it to test your local dev server in the browser.",
+	"featureTip.11": "Use /reportbug to quickly file a GitHub issue with diagnostic context included.",
+
+	// Markdown Block
+	"markdown.toggleActMode": "Click to toggle to Act Mode",
+	"markdown.alreadyActMode": "Already in Act Mode",
+	"markdown.actModeLabel": "Act Mode (\u2318\u21E7A)",
 }
 
 export default en

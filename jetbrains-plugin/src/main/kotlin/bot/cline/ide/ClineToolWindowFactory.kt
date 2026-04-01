@@ -239,6 +239,7 @@ class ClineToolWindowFactory : ToolWindowFactory, DumbAware {
                             s.setProperty('--vscode-editor-border', '#3C3C3C');
                             s.setProperty('--vscode-charts-green', '#89D185');
                             s.setProperty('--vscode-charts-yellow', '#CCA700');
+                            s.setProperty('--vscode-activityWarningBadge-background', '#CCA700');
                             s.setProperty('--vscode-testing-iconFailed', '#F48771');
                             s.setProperty('--vscode-banner-background', '#04395E');
                             s.setProperty('--vscode-banner-foreground', '#FFFFFF');

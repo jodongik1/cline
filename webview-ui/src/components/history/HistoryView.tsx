@@ -167,22 +167,28 @@ const HistoryView = ({ onDone }: HistoryViewProps) => {
 	const handleDeleteHistoryItem = useCallback(
 		(id: string) => {
 			TaskServiceClient.deleteTasksWithIds(StringArrayRequest.create({ value: [id] }))
-				.then(() => fetchTotalTasksSize())
+				.then(() => {
+					fetchTotalTasksSize()
+					loadTaskHistory()
+				})
 				.catch((error) => console.error("Error deleting task:", error))
 		},
-		[fetchTotalTasksSize],
+		[fetchTotalTasksSize, loadTaskHistory],
 	)
 
 	const handleDeleteSelectedHistoryItems = useCallback(
 		(ids: string[]) => {
 			if (ids.length > 0) {
 				TaskServiceClient.deleteTasksWithIds(StringArrayRequest.create({ value: ids }))
-					.then(() => fetchTotalTasksSize())
+					.then(() => {
+						fetchTotalTasksSize()
+						loadTaskHistory()
+					})
 					.catch((error) => console.error("Error deleting tasks:", error))
 				setSelectedItems([])
 			}
 		},
-		[fetchTotalTasksSize],
+		[fetchTotalTasksSize, loadTaskHistory],
 	)
 
 	const fuse = useMemo(() => {
@@ -448,7 +454,10 @@ const HistoryView = ({ onDone }: HistoryViewProps) => {
 						onClick={() => {
 							setDeleteAllDisabled(true)
 							TaskServiceClient.deleteAllTaskHistory(BooleanRequest.create({}))
-								.then(() => fetchTotalTasksSize())
+								.then(() => {
+									fetchTotalTasksSize()
+									loadTaskHistory()
+								})
 								.catch((error) => console.error("Error deleting task history:", error))
 								.finally(() => setDeleteAllDisabled(false))
 						}}

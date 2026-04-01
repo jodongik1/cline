@@ -325,7 +325,7 @@ const ChatView = ({ isHidden, showAnnouncement, hideAnnouncement, showHistoryVie
 	const scrollBehavior = useScrollBehavior(messages, visibleMessages, groupedMessages, expandedRows, setExpandedRows)
 
 	const placeholderText = useMemo(() => {
-		const text = task ? "Type a message..." : "Type your task here..."
+		const text = task ? "메시지를 입력하세요..." : "작업을 입력하세요..."
 		return text
 	}, [task])
 

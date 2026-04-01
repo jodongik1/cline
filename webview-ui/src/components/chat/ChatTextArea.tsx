@@ -1396,7 +1396,8 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 					<div
 						className={cn(
 							"absolute bottom-2.5 top-2.5 whitespace-pre-wrap break-words rounded-xs overflow-hidden bg-input-background",
-							isTextAreaFocused ? "left-3.5 right-3.5" : "left-3.5 right-3.5 border border-input-border",
+							isTextAreaFocused ? "left-3.5 right-3.5" : "left-3.5 right-3.5 border",
+							!isTextAreaFocused && mode !== "plan" ? "border-input-border" : "",
 						)}
 						ref={highlightLayerRef}
 						style={{
@@ -1414,6 +1415,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 							borderRight: isTextAreaFocused ? 0 : undefined,
 							borderTop: isTextAreaFocused ? 0 : undefined,
 							borderBottom: isTextAreaFocused ? 0 : undefined,
+							borderColor: !isTextAreaFocused && mode === "plan" ? PLAN_MODE_COLOR : undefined,
 							padding: `9px 28px ${9 + thumbnailsHeight}px 9px`,
 						}}
 					/>
@@ -1493,7 +1495,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 					/>
 					{!inputValue && selectedImages.length === 0 && selectedFiles.length === 0 && (
 						<div className="text-xs absolute bottom-5 left-6.5 right-16 text-(--vscode-input-placeholderForeground)/50 whitespace-nowrap overflow-hidden text-ellipsis pointer-events-none z-1">
-							Type @ for context, / for slash commands & workflows, hold shift to drag in files/images
+							@ 컨텍스트 추가, / 슬래시 명령어 & 워크플로우, shift를 누른 채로 파일/이미지 드래그
 						</div>
 					)}
 					{(selectedImages.length > 0 || selectedFiles.length > 0) && (
@@ -1536,11 +1538,11 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 						{/* ButtonGroup - always in DOM but visibility controlled */}
 						<ButtonGroup className="absolute top-0 left-0 right-0 ease-in-out w-full h-5 z-10 flex items-center">
 							<Tooltip>
-								<TooltipContent>Add Context</TooltipContent>
+								<TooltipContent>컨텍스트 추가</TooltipContent>
 								<TooltipTrigger>
 									<VSCodeButton
 										appearance="icon"
-										aria-label="Add Context"
+										aria-label="컨텍스트 추가"
 										className="p-0 m-0 flex items-center"
 										data-testid="context-button"
 										onClick={handleContextButtonClick}>
@@ -1552,11 +1554,11 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 							</Tooltip>
 
 							<Tooltip>
-								<TooltipContent>Add Files & Images</TooltipContent>
+								<TooltipContent>파일 & 이미지 추가</TooltipContent>
 								<TooltipTrigger>
 									<VSCodeButton
 										appearance="icon"
-										aria-label="Add Files & Images"
+										aria-label="파일 & 이미지 추가"
 										className="p-0 m-0 flex items-center"
 										data-testid="files-button"
 										disabled={shouldDisableFilesAndImages}
@@ -1583,7 +1585,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 										onClick={handleModelButtonClick}
 										role="button"
 										tabIndex={0}
-										title="Open API Settings">
+										title="API 설정 열기">
 										<ModelButtonContent className="text-xs">{modelDisplayName}</ModelButtonContent>
 									</ModelDisplayButton>
 								</ModelButtonWrapper>
@@ -1596,9 +1598,9 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 							className="text-xs px-2 flex flex-col gap-1"
 							hidden={shownTooltipMode === null}
 							side="top">
-							{`In ${shownTooltipMode === "act" ? "Act" : "Plan"}  mode, Cline will ${shownTooltipMode === "act" ? "complete the task immediately" : "gather information to architect a plan"}`}
+							{`${shownTooltipMode === "act" ? "Act" : "Plan"} 모드에서 Cline은 ${shownTooltipMode === "act" ? "즉시 작업을 완료합니다" : "계획을 수립하기 위해 정보를 수집합니다"}`}
 							<p className="text-description/80 text-xs mb-0">
-								Toggle w/ <kbd className="text-muted-foreground mx-1">{togglePlanActKeys}</kbd>
+								토글 단축키: <kbd className="text-muted-foreground mx-1">{togglePlanActKeys}</kbd>
 							</p>
 						</TooltipContent>
 						<TooltipTrigger>

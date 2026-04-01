@@ -4,6 +4,7 @@ import { VSCodeButton } from "@vscode/webview-ui-toolkit/react"
 import type React from "react"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { VirtuosoHandle } from "react-virtuoso"
+import { useTranslation } from "@/i18n/useTranslation"
 import { ButtonActionType, getButtonConfig } from "../../shared/buttonConfig"
 import type { ChatState, MessageHandlers } from "../../types/chatTypes"
 
@@ -32,6 +33,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
 	messageHandlers,
 	scrollBehavior,
 }) => {
+	const { t } = useTranslation()
 	const { inputValue, selectedImages, selectedFiles, setSendingDisabled } = chatState
 	const [isProcessing, setIsProcessing] = useState(false)
 
@@ -165,7 +167,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
 					className={secondaryText ? "flex-1 mr-[6px]" : "flex-2"}
 					disabled={!canInteract}
 					onClick={() => handleActionClick(primaryAction, inputValue, selectedImages, selectedFiles)}>
-					{primaryText}
+					{t(primaryText)}
 				</VSCodeButton>
 			)}
 			{secondaryText && secondaryAction && (
@@ -174,7 +176,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
 					className={primaryText ? "flex-1" : "flex-2"}
 					disabled={!canInteract}
 					onClick={() => handleActionClick(secondaryAction, inputValue, selectedImages, selectedFiles)}>
-					{secondaryText}
+					{t(secondaryText)}
 				</VSCodeButton>
 			)}
 		</div>

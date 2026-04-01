@@ -1,10 +1,12 @@
 import { EmptyRequest } from "@shared/proto/cline/common"
 import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 import { useExtensionState } from "@/context/ExtensionStateContext"
+import { useTranslation } from "@/i18n/useTranslation"
 import { McpServiceClient } from "@/services/grpc-client"
 import ServersToggleList from "./ServersToggleList"
 
 const ConfigureServersView = () => {
+	const { t } = useTranslation()
 	const { mcpServers: servers, navigateToSettings, remoteConfigSettings } = useExtensionState()
 
 	// Check if there are remote MCP servers configured
@@ -19,18 +21,17 @@ const ConfigureServersView = () => {
 					marginBottom: "16px",
 					marginTop: "5px",
 				}}>
-				The{" "}
 				<VSCodeLink href="https://github.com/modelcontextprotocol" style={{ display: "inline" }}>
 					Model Context Protocol
 				</VSCodeLink>{" "}
-				enables communication with locally running MCP servers that provide additional tools and resources to extend
-				Cline's capabilities. You can use{" "}
+				은 추가 도구와 리소스를 제공하는 로컬 MCP 서버와의 통신을 가능하게 하여 Cline의 기능을 확장합니다.{" "}
 				<VSCodeLink href="https://github.com/modelcontextprotocol/servers" style={{ display: "inline" }}>
-					community-made servers
+					커뮤니티 서버
 				</VSCodeLink>{" "}
-				or ask Cline to create new tools specific to your workflow (e.g., "add a tool that gets the latest npm docs").{" "}
+				를 사용하거나 Cline에게 워크플로우에 맞는 새 도구를 만들어달라고 요청할 수 있습니다 (예: "최신 npm 문서를 가져오는
+				도구 추가").{" "}
 				<VSCodeLink href="https://x.com/sdrzn/status/1867271665086074969" style={{ display: "inline" }}>
-					See a demo here.
+					데모 보기
 				</VSCodeLink>
 			</div>
 
@@ -38,7 +39,7 @@ const ConfigureServersView = () => {
 			{hasRemoteMCPServers && (
 				<div className="flex items-center gap-2 px-5 py-3 mb-4 bg-vscode-textBlockQuote-background border-l-[3px] border-vscode-textLink-foreground">
 					<i className="codicon codicon-lock text-sm" />
-					<span className="text-base">Your organization manages some MCP servers</span>
+					<span className="text-base">{t("mcp.configure.remoteManaged")}</span>
 				</div>
 			)}
 
@@ -54,13 +55,13 @@ const ConfigureServersView = () => {
 						})
 					}}
 					style={{ width: "100%", marginBottom: "5px" }}>
-					<span className="codicon codicon-server" style={{ marginRight: "6px" }}></span>
-					Configure MCP Servers
+					<span className="codicon codicon-server" style={{ marginRight: "6px" }} />
+					{t("mcp.configure.openSettings")}
 				</VSCodeButton>
 
 				<div style={{ textAlign: "center" }}>
 					<VSCodeLink onClick={() => navigateToSettings("features")} style={{ fontSize: "12px" }}>
-						Advanced MCP Settings
+						{t("mcp.configure.advancedSettings")}
 					</VSCodeLink>
 				</div>
 			</div>

@@ -127,19 +127,19 @@ const UserMessage: React.FC<UserMessageProps> = ({ text, images, files, messageT
 						{!checkpointManagerErrorMessage && (
 							<RestoreButton
 								isPrimary={false}
-								label="Restore All"
+								label="모두 복원"
 								onClick={handleRestoreWorkspace}
 								ref={restoreAllButtonRef}
-								title="Restore both the chat and workspace files to this checkpoint and send your edited message"
+								title="채팅과 작업공간 파일을 이 체크포인트로 복원하고 수정된 메시지를 전송합니다"
 								type="taskAndWorkspace"
 							/>
 						)}
 						<RestoreButton
 							isPrimary={true}
-							label="Restore Chat"
+							label="채팅 복원"
 							onClick={handleRestoreWorkspace}
 							ref={restoreChatButtonRef}
-							title="Restore just the chat to this checkpoint and send your edited message"
+							title="채팅만 이 체크포인트로 복원하고 수정된 메시지를 전송합니다"
 							type="task"
 						/>
 					</div>

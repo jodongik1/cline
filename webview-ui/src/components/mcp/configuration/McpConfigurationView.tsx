@@ -5,6 +5,7 @@ import { convertProtoMcpServersToMcpServers } from "@shared/proto-conversions/mc
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { useExtensionState } from "@/context/ExtensionStateContext"
+import { useTranslation } from "@/i18n/useTranslation"
 import { McpServiceClient } from "@/services/grpc-client"
 import ViewHeader from "../../common/ViewHeader"
 import AddRemoteServerForm from "./tabs/add-server/AddRemoteServerForm"
@@ -17,6 +18,7 @@ type McpViewProps = {
 }
 
 const McpConfigurationView = ({ onDone, initialTab }: McpViewProps) => {
+	const { t } = useTranslation()
 	const { remoteConfigSettings, setMcpServers, environment } = useExtensionState()
 	// Show marketplace by default unless remote config explicitly disables it
 	const showMarketplace = remoteConfigSettings?.mcpMarketplaceEnabled !== false
@@ -74,7 +76,7 @@ const McpConfigurationView = ({ onDone, initialTab }: McpViewProps) => {
 				display: "flex",
 				flexDirection: "column",
 			}}>
-			<ViewHeader environment={environment} onDone={onDone} title="MCP Servers" />
+			<ViewHeader environment={environment} onDone={onDone} title={t("mcp.title")} />
 
 			<div style={{ flex: 1, overflow: "auto" }}>
 				{/* Tabs container */}
@@ -87,16 +89,16 @@ const McpConfigurationView = ({ onDone, initialTab }: McpViewProps) => {
 					}}>
 					{showMarketplace && (
 						<TabButton isActive={activeTab === "marketplace"} onClick={() => handleTabChange("marketplace")}>
-							Marketplace
+							{t("mcp.tab.marketplace")}
 						</TabButton>
 					)}
 					{showRemoteServers && (
 						<TabButton isActive={activeTab === "addRemote"} onClick={() => handleTabChange("addRemote")}>
-							Remote Servers
+							{t("mcp.tab.remoteServers")}
 						</TabButton>
 					)}
 					<TabButton isActive={activeTab === "configure"} onClick={() => handleTabChange("configure")}>
-						Configure
+						{t("mcp.tab.configure")}
 					</TabButton>
 				</div>
 

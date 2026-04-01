@@ -79,10 +79,10 @@ export function UnsavedChangesDialog({
 	onConfirm,
 	onCancel,
 	onSave,
-	title = "Unsaved Changes",
-	description = "You have unsaved changes. Are you sure you want to discard them?",
-	confirmText = "Discard Changes",
-	saveText = "Save & Continue",
+	title = "저장되지 않은 변경사항",
+	description = "저장되지 않은 변경사항이 있습니다. 정말 삭제하시겠습니까?",
+	confirmText = "변경사항 삭제",
+	saveText = "저장 후 계속",
 	showSaveOption = false,
 }: {
 	open: boolean
@@ -107,7 +107,7 @@ export function UnsavedChangesDialog({
 					<AlertDialogDescription>{description}</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
-					<AlertDialogCancel onClick={onCancel}>Cancel</AlertDialogCancel>
+					<AlertDialogCancel onClick={onCancel}>취소</AlertDialogCancel>
 					{showSaveOption && onSave && <AlertDialogAction onClick={onSave}>{saveText}</AlertDialogAction>}
 					<AlertDialogAction appearance={showSaveOption ? "secondary" : "primary"} onClick={onConfirm}>
 						{confirmText}

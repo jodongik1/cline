@@ -56,19 +56,17 @@ const CreditLimitError: React.FC<CreditLimitErrorProps> = ({
 				<div className="mb-3">
 					{currentBalance ? (
 						<div className="text-foreground">
-							Current Balance: <span className="font-bold">{currentBalance.toFixed(2)}</span>
+							현재 잔액: <span className="font-bold">{currentBalance.toFixed(2)}</span>
 						</div>
 					) : null}
-					{totalSpent ? <div className="text-foreground">Total Spent: {totalSpent.toFixed(2)}</div> : null}
-					{totalPromotions ? (
-						<div className="text-foreground">Total Promotions: {totalPromotions.toFixed(2)}</div>
-					) : null}
+					{totalSpent ? <div className="text-foreground">총 사용액: {totalSpent.toFixed(2)}</div> : null}
+					{totalPromotions ? <div className="text-foreground">총 프로모션: {totalPromotions.toFixed(2)}</div> : null}
 				</div>
 			</div>
 
 			<VSCodeButtonLink className="w-full mb-2" href={fullBuyCreditsUrl}>
 				<span className="codicon codicon-credit-card mr-[6px] text-[14px]" />
-				Buy Credits
+				크레딧 구매
 			</VSCodeButtonLink>
 
 			<VSCodeButton
@@ -86,7 +84,7 @@ const CreditLimitError: React.FC<CreditLimitErrorProps> = ({
 					}
 				}}>
 				<span className="codicon codicon-refresh mr-1.5" />
-				Retry Request
+				요청 재시도
 			</VSCodeButton>
 		</div>
 	)

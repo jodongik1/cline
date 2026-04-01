@@ -77,10 +77,10 @@ const TaskFeedbackButtons: React.FC<TaskFeedbackButtonsProps> = ({ messageTs, is
 				<ButtonWrapper>
 					<VSCodeButton
 						appearance="icon"
-						aria-label="This was helpful"
+						aria-label="도움이 됐습니다"
 						disabled={feedback !== null}
 						onClick={() => handleFeedback("thumbs_up")}
-						title="This was helpful">
+						title="도움이 됐습니다">
 						<IconWrapper>
 							<span
 								className={`codicon ${feedback === "thumbs_up" ? "codicon-thumbsup-filled" : "codicon-thumbsup"}`}
@@ -91,10 +91,10 @@ const TaskFeedbackButtons: React.FC<TaskFeedbackButtonsProps> = ({ messageTs, is
 				<ButtonWrapper>
 					<VSCodeButton
 						appearance="icon"
-						aria-label="This wasn't helpful"
+						aria-label="도움이 되지 않았습니다"
 						disabled={feedback !== null && feedback !== "thumbs_down"}
 						onClick={() => handleFeedback("thumbs_down")}
-						title="This wasn't helpful">
+						title="도움이 되지 않았습니다">
 						<IconWrapper>
 							<span
 								className={`codicon ${feedback === "thumbs_down" ? "codicon-thumbsdown-filled" : "codicon-thumbsdown"}`}

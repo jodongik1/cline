@@ -284,6 +284,256 @@ const ko: Record<string, string> = {
 	"welcome.subtitle": "자율형 AI 코딩 에이전트",
 	"welcome.whatCanIDo": "무엇을 도와드릴까요?",
 	"welcome.takeATour": "둘러보기",
+
+	// Action Buttons (buttonConfig)
+	"buttons.retry": "재시도",
+	"buttons.startNewTask": "새 작업 시작",
+	"buttons.startNewTaskWithContext": "컨텍스트와 함께 새 작업 시작",
+	"buttons.proceedAnyways": "계속 진행",
+	"buttons.approve": "승인",
+	"buttons.reject": "거부",
+	"buttons.save": "저장",
+	"buttons.runCommand": "명령 실행",
+	"buttons.proceedWhileRunning": "실행 중 계속 진행",
+	"buttons.resumeTask": "작업 재개",
+	"buttons.condenseConversation": "대화 압축",
+	"buttons.reportGitHubIssue": "GitHub 이슈 보고",
+	"buttons.cancel": "취소",
+
+	// History Preview
+	"historyPreview.recent": "최근",
+	"historyPreview.viewAll": "전체 보기",
+	"historyPreview.viewAllAriaLabel": "전체 기록 보기",
+	"historyPreview.favoritedAriaLabel": "즐겨찾기",
+	"historyPreview.noRecentTasks": "최근 작업이 없습니다",
+
+	// MCP Configuration View
+	"mcp.title": "MCP 서버",
+	"mcp.tab.marketplace": "마켓플레이스",
+	"mcp.tab.remoteServers": "원격 서버",
+	"mcp.tab.configure": "설정",
+
+	// MCP Server Row
+	"mcp.server.restart": "서버 재시작",
+	"mcp.server.restarting": "재시작 중...",
+	"mcp.server.delete": "서버 삭제",
+	"mcp.server.deleting": "삭제 중...",
+	"mcp.server.retryConnection": "연결 재시도",
+	"mcp.server.retrying": "재시도 중...",
+	"mcp.server.tabs.tools": "도구",
+	"mcp.server.tabs.resources": "리소스",
+	"mcp.server.tabs.prompts": "프롬프트",
+	"mcp.server.autoApproveAll": "모든 도구 자동 승인",
+	"mcp.server.noTools": "도구를 찾을 수 없습니다",
+	"mcp.server.noResources": "리소스를 찾을 수 없습니다",
+	"mcp.server.noPrompts": "프롬프트를 찾을 수 없습니다",
+	"mcp.server.requestTimeout": "요청 시간 초과",
+	"mcp.server.alwaysEnabled": "이 서버는 조직에서 활성화했기 때문에 비활성화할 수 없습니다",
+	"mcp.server.authenticate": "인증",
+	"mcp.tool.autoApprove": "자동 승인",
+	"mcp.tool.parameters": "파라미터",
+	"mcp.tool.noDescription": "설명 없음",
+	"mcp.resource.returns": "반환:",
+	"mcp.resource.noDescription": "설명 없음",
+	"mcp.prompt.arguments": "인수",
+	"mcp.prompt.noDescription": "설명 없음",
+
+	// MCP Configure View
+	"mcp.configure.remoteManaged": "조직에서 일부 MCP 서버를 관리하고 있습니다",
+	"mcp.configure.openSettings": "MCP 서버 설정",
+	"mcp.configure.advancedSettings": "고급 MCP 설정",
+	"mcp.noServersInstalled": "설치된 MCP 서버가 없습니다",
+
+	// MCP Timeout Options
+	"mcp.timeout.30s": "30초",
+	"mcp.timeout.1m": "1분",
+	"mcp.timeout.5m": "5분",
+	"mcp.timeout.10m": "10분",
+	"mcp.timeout.30m": "30분",
+	"mcp.timeout.1h": "1시간",
+
+	// MCP Marketplace
+	"mcp.marketplace.loadError": "마켓플레이스 데이터를 불러오지 못했습니다",
+	"mcp.marketplace.retry": "재시도",
+	"mcp.marketplace.searchPlaceholder": "MCP 검색...",
+	"mcp.marketplace.clearSearch": "검색 지우기",
+	"mcp.marketplace.filter": "필터:",
+	"mcp.marketplace.allCategories": "전체 카테고리",
+	"mcp.marketplace.sort": "정렬:",
+	"mcp.marketplace.sortMostInstalls": "많이 설치된",
+	"mcp.marketplace.sortNewest": "최신순",
+	"mcp.marketplace.sortStars": "GitHub 별",
+	"mcp.marketplace.sortName": "이름순",
+	"mcp.marketplace.orgPreconfigured": "조직에서 사용 가능한 MCP 서버를 사전 구성했습니다",
+	"mcp.marketplace.noMatchingServers": "일치하는 MCP 서버를 찾을 수 없습니다",
+	"mcp.marketplace.noServers": "마켓플레이스에서 MCP 서버를 찾을 수 없습니다",
+	"mcp.marketplace.install": "설치",
+	"mcp.marketplace.installing": "설치 중...",
+	"mcp.marketplace.installed": "설치됨",
+	"mcp.marketplace.requiresApiKey": "API 키 필요",
+	"mcp.marketplace.submit": "MCP 서버 제출",
+	"mcp.marketplace.submitDescription": "이슈를 제출하여 훌륭한 MCP 서버를 다른 사람들이 발견할 수 있도록 도와주세요.",
+
+	// MCP Add Remote Server
+	"mcp.addRemote.serverNameRequired": "서버 이름이 필요합니다",
+	"mcp.addRemote.serverUrlRequired": "서버 URL이 필요합니다",
+	"mcp.addRemote.invalidUrl": "유효하지 않은 URL 형식입니다",
+	"mcp.addRemote.failedToAdd": "서버 추가에 실패했습니다",
+	"mcp.addRemote.serverName": "서버 이름",
+	"mcp.addRemote.serverUrl": "서버 URL",
+	"mcp.addRemote.transportType": "전송 방식",
+	"mcp.addRemote.connecting": "연결 중...",
+	"mcp.addRemote.addServer": "서버 추가",
+	"mcp.addRemote.editConfig": "설정 편집",
+	"mcp.addRemote.learnMore": "자세히 보기",
+	"mcp.addRemote.description": "이름과 URL 엔드포인트를 입력하여 원격 MCP 서버를 추가하세요.",
+
+	// MCP Add Local Server
+	"mcp.addLocal.openSettings": "cline_mcp_settings.json 열기",
+	"mcp.addLocal.learnMore": "자세히 보기",
+
+	// MCP Display Mode
+	"mcp.displayMode.plainText": "일반 텍스트",
+	"mcp.displayMode.richDisplay": "리치 디스플레이",
+	"mcp.displayMode.markdown": "마크다운",
+
+	// MCP Response Display
+	"mcp.response.response": "응답",
+	"mcp.response.responseError": "응답 (오류)",
+	"mcp.response.parseError": "응답 파싱 오류:",
+
+	// Focus Chain
+	"focusChain.completed": "모든 작업이 완료되었습니다!",
+	"focusChain.label": "할 일 목록",
+	"focusChain.newSteps": "작업을 계속하면 새 단계가 생성됩니다",
+	"focusChain.clickToEdit": "클릭하여 파일에서 할 일 목록 편집",
+	"focusChain.collapse": "포커스 체인 접기",
+	"focusChain.expand": "포커스 체인 펼치기",
+
+	// Browser Session
+	"browser.sessionStarted": "브라우저 세션 시작됨",
+	"browser.usingBrowser": "Cline이 브라우저를 사용 중입니다:",
+	"browser.wantsBrowser": "Cline이 브라우저를 사용하려고 합니다:",
+	"browser.consoleLogs": "콘솔 로그",
+	"browser.noNewLogs": "(새 로그 없음)",
+	"browser.previous": "이전",
+	"browser.next": "다음",
+	"browser.screenshotAlt": "브라우저 스크린샷",
+	"browser.action.label": "브라우저 동작:",
+	"browser.action.launchPrefix": "브라우저 시작:",
+	"browser.action.clickPrefix": "클릭",
+	"browser.action.typePrefix": "입력",
+	"browser.action.scrollDown": "아래로 스크롤",
+	"browser.action.scrollUp": "위로 스크롤",
+	"browser.action.close": "브라우저 닫기",
+
+	// Errors
+	"error.loggedOut": "로그아웃된 것 같습니다 \u2013 아래를 클릭하여 로그인하세요",
+	"error.signIn": "Cline에 로그인",
+	"error.clickRetry": '(아래의 "재시도"를 클릭하세요)',
+	"error.powershellPrefix": "Windows PowerShell 문제가 발생한 것 같습니다.",
+	"error.powershellLink": "문제 해결 가이드",
+	"error.powershellSuffix": "를 참조하세요.",
+	"error.diffError": "모델이 파일에서 일치하는 검색 패턴을 찾지 못했습니다. 재시도 중...",
+	"error.clineignorePrefix": "Cline이",
+	"error.clineignoreSuffix": "에 접근하려 했지만 .clineignore 파일에 의해 차단되었습니다.",
+
+	// Credit Limit Error
+	"creditLimit.currentBalance": "현재 잔액:",
+	"creditLimit.totalSpent": "총 사용액:",
+	"creditLimit.totalPromotions": "총 프로모션:",
+	"creditLimit.buyCredits": "크레딧 구매",
+	"creditLimit.retryRequest": "요청 재시도",
+
+	// Common UI
+	"common.copy": "복사",
+	"common.copied": "복사됨",
+	"common.quoteSelection": "선택 항목 인용",
+	"common.quoteSelectionInReply": "답변에서 선택 항목 인용",
+
+	// Alert Dialog
+	"dialog.unsavedChanges.title": "저장되지 않은 변경사항",
+	"dialog.unsavedChanges.description": "저장되지 않은 변경사항이 있습니다. 정말 삭제하시겠습니까?",
+	"dialog.unsavedChanges.confirm": "변경사항 삭제",
+	"dialog.unsavedChanges.save": "저장 후 계속",
+	"dialog.cancel": "취소",
+
+	// Slash Command Menu
+	"slashMenu.defaultCommands": "기본 명령어",
+	"slashMenu.workflowCommands": "워크플로우 명령어",
+	"slashMenu.mcpPrompts": "MCP 프롬프트",
+	"slashMenu.noResults": "일치하는 명령어를 찾을 수 없습니다",
+	"slashMenu.ariaLabel": "슬래시 명령어",
+
+	// Context Menu
+	"contextMenu.problems": "문제",
+	"contextMenu.terminal": "터미널",
+	"contextMenu.pasteUrl": "URL을 붙여넣어 내용 가져오기",
+	"contextMenu.noResults": "결과를 찾을 수 없습니다",
+	"contextMenu.gitCommits": "Git 커밋",
+	"contextMenu.addFile": "파일 추가",
+	"contextMenu.addFolder": "폴더 추가",
+
+	// Thinking Row
+	"thinking.title": "생각 중",
+
+	// Hook Message
+	"hook.label": "훅:",
+	"hook.status.running": "실행 중",
+	"hook.status.failed": "실패",
+	"hook.status.aborted": "중단됨",
+	"hook.status.completed": "완료됨",
+	"hook.status.unknown": "알 수 없음",
+	"hook.abort": "중단",
+	"hook.timeout": "30초를 초과했습니다. 무한 루프가 있는지 확인하거나 네트워크 요청에 타임아웃을 추가하세요.",
+	"hook.invalidJson": "훅이 유효하지 않은 JSON을 반환했습니다. 자세한 내용은 아래 오류 세부 정보를 확인하세요.",
+
+	// Task Feedback
+	"feedback.helpful": "도움이 됐습니다",
+	"feedback.notHelpful": "도움이 되지 않았습니다",
+
+	// User Message (Checkpoints)
+	"checkpoint.restoreAll": "모두 복원",
+	"checkpoint.restoreAllTitle": "채팅과 작업공간 파일을 이 체크포인트로 복원하고 수정된 메시지를 전송합니다",
+	"checkpoint.restoreChat": "채팅 복원",
+	"checkpoint.restoreChatTitle": "채팅만 이 체크포인트로 복원하고 수정된 메시지를 전송합니다",
+
+	// MCP Server Toggle Modal
+	"mcpModal.manage": "MCP 서버 관리",
+	"mcpModal.hide": "MCP 서버 숨기기",
+	"mcpModal.show": "MCP 서버 표시",
+	"mcpModal.title": "MCP 서버",
+	"mcpModal.goToSettings": "MCP 서버 설정으로 이동",
+
+	// Telemetry Banner
+	"telemetry.banner.title": "Cline 개선에 도움을 주세요",
+	"telemetry.banner.subtitle": "(그리고 실험적 기능에 접근하세요)",
+	"telemetry.banner.description":
+		"Cline은 버그 수정과 확장 기능 개선을 위해 오류 및 사용 데이터를 수집합니다. 코드, 프롬프트, 개인 정보는 전송되지 않습니다.",
+	"telemetry.banner.turnOffPrefix": "이 설정은 ",
+	"telemetry.banner.settings": "설정",
+	"telemetry.banner.turnOffSuffix": "에서 끌 수 있습니다.",
+	"telemetry.banner.closeAriaLabel": "배너 닫기 및 원격 분석 활성화",
+
+	// Feature Tips
+	"featureTip.label": "팁:",
+	"featureTip.0": '설정에서 "완료 재확인"을 활성화하면 Cline이 작업을 마치기 전에 결과를 검토합니다.',
+	"featureTip.1": "프로젝트 루트에 .clinerules 파일을 추가하면 Cline에게 프로젝트별 지침을 제공할 수 있습니다.",
+	"featureTip.2": "Plan 모드로 전환하면 Cline이 실행하기 전에 접근 방식을 논의하고 계획할 수 있습니다.",
+	"featureTip.3": "채팅 입력창에서 @를 사용하면 파일, 폴더, URL을 작업의 컨텍스트로 추가할 수 있습니다.",
+	"featureTip.4": "MCP 서버를 설정하면 Cline에게 외부 도구와 API 접근 권한을 부여할 수 있습니다.",
+	"featureTip.5": "Cline은 변경 후 체크포인트를 생성합니다 \u2014 언제든지 이전 상태로 복원할 수 있습니다.",
+	"featureTip.6": "/compact를 사용하면 긴 대화를 압축하여 컨텍스트 창 공간을 확보할 수 있습니다.",
+	"featureTip.7": "파일 읽기와 같은 읽기 전용 도구에 자동 승인을 활성화하면 탐색 속도가 빨라집니다.",
+	"featureTip.8": "인용 버튼을 사용하면 Cline의 응답에서 텍스트를 선택해 답변에 참조할 수 있습니다.",
+	"featureTip.9": "채팅창에 이미지를 드래그 앤 드롭하면 Cline과 스크린샷을 공유할 수 있습니다.",
+	"featureTip.10": "Cline은 웹사이트를 탐색할 수 있습니다 \u2014 브라우저에서 로컬 개발 서버를 테스트해보세요.",
+	"featureTip.11": "/reportbug를 사용하면 진단 컨텍스트가 포함된 GitHub 이슈를 빠르게 제출할 수 있습니다.",
+
+	// Markdown Block
+	"markdown.toggleActMode": "클릭하여 Act 모드로 전환",
+	"markdown.alreadyActMode": "이미 Act 모드입니다",
+	"markdown.actModeLabel": "Act 모드 (\u2318\u21E7A)",
 }
 
 export default ko

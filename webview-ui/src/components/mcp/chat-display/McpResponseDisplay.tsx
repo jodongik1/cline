@@ -9,6 +9,7 @@ import MarkdownBlock from "@/components/common/MarkdownBlock"
 import { DropdownContainer } from "@/components/settings/ApiOptions"
 import { updateSetting } from "@/components/settings/utils/settingsHandlers"
 import { useExtensionState } from "../../../context/ExtensionStateContext"
+import { useTranslation } from "../../../i18n/useTranslation"
 import ImagePreview from "./ImagePreview"
 import LinkPreview from "./LinkPreview"
 import McpDisplayModeDropdown from "./McpDisplayModeDropdown"
@@ -77,6 +78,7 @@ interface McpResponseDisplayProps {
 }
 
 const McpResponseDisplay: React.FC<McpResponseDisplayProps> = ({ responseText }) => {
+	const { t } = useTranslation()
 	const { mcpResponsesCollapsed, mcpDisplayMode } = useExtensionState() // Get setting from context
 	const [isExpanded, setIsExpanded] = useState(!mcpResponsesCollapsed) // Initialize with context setting
 	const [isLoading, setIsLoading] = useState(false) // Initial loading state for rich content
@@ -229,7 +231,7 @@ const McpResponseDisplay: React.FC<McpResponseDisplayProps> = ({ responseText })
 						) : (
 							<ChevronRightIcon className="header-icon" size={16} />
 						)}
-						Response
+						{t("mcp.response.response")}
 					</div>
 					<DropdownContainer
 						style={{ minWidth: isExpanded ? "auto" : "0", visibility: isExpanded ? "visible" : "hidden" }}>
@@ -257,12 +259,12 @@ const McpResponseDisplay: React.FC<McpResponseDisplayProps> = ({ responseText })
 						) : (
 							<ChevronRightIcon className="header-icon" size={16} />
 						)}
-						Response (Error)
+						{t("mcp.response.responseError")}
 					</div>
 				</ResponseHeader>
 				{isExpanded && (
 					<div className="response-content">
-						<div style={{ color: "var(--vscode-errorForeground)" }}>Error parsing response:</div>
+						<div style={{ color: "var(--vscode-errorForeground)" }}>{t("mcp.response.parseError")}</div>
 						<UrlText>{responseText}</UrlText>
 					</div>
 				)}

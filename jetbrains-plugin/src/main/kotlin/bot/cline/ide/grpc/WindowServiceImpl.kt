@@ -46,8 +46,22 @@ class WindowServiceImpl(private val project: Project) : WindowServiceGrpcKt.Wind
             val defaultOptionIndex = if (options.isNotEmpty()) 0 else -1
 
             when (request.type) {
-                ShowMessageType.ERROR -> Messages.showErrorDialog(project, message, title)
-                ShowMessageType.WARNING -> Messages.showWarningDialog(project, message, title)
+                ShowMessageType.ERROR -> {
+                    if (options.isNotEmpty()) {
+                        val index = Messages.showDialog(project, message, title, options, defaultOptionIndex, Messages.getErrorIcon())
+                        if (index >= 0) selectedItem = options[index]
+                    } else {
+                        Messages.showErrorDialog(project, message, title)
+                    }
+                }
+                ShowMessageType.WARNING -> {
+                    if (options.isNotEmpty()) {
+                        val index = Messages.showDialog(project, message, title, options, defaultOptionIndex, Messages.getWarningIcon())
+                        if (index >= 0) selectedItem = options[index]
+                    } else {
+                        Messages.showWarningDialog(project, message, title)
+                    }
+                }
                 ShowMessageType.INFORMATION -> {
                     if (options.isNotEmpty()) {
                         val index = Messages.showDialog(project, message, title, options, defaultOptionIndex, Messages.getInformationIcon())

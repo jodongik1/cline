@@ -1,6 +1,7 @@
 import { StringRequest } from "@shared/proto/cline/common"
 import { memo } from "react"
 import { useExtensionState } from "@/context/ExtensionStateContext"
+import { useTranslation } from "@/i18n/useTranslation"
 import { TaskServiceClient } from "@/services/grpc-client"
 
 type HistoryPreviewProps = {
@@ -8,6 +9,7 @@ type HistoryPreviewProps = {
 }
 
 const HistoryPreview = ({ showHistoryView }: HistoryPreviewProps) => {
+	const { t } = useTranslation()
 	const { taskHistory } = useExtensionState()
 	const handleHistorySelect = (id: string) => {
 		TaskServiceClient.showTaskWithId(StringRequest.create({ value: id })).catch((error) =>
@@ -118,23 +120,24 @@ const HistoryPreview = ({ showHistoryView }: HistoryPreviewProps) => {
 						style={{
 							marginRight: "4px",
 							transform: "scale(0.9)",
-						}}></span>
+						}}
+					/>
 					<span
 						style={{
 							fontWeight: 500,
 							fontSize: "0.85em",
 							textTransform: "uppercase",
 						}}>
-						Recent
+						{t("historyPreview.recent")}
 					</span>
 				</div>
 				{taskHistory.filter((item) => item.ts && item.task).length > 0 && (
 					<button
-						aria-label="View all history"
+						aria-label={t("historyPreview.viewAllAriaLabel")}
 						className="history-view-all-btn"
 						onClick={() => showHistoryView()}
 						type="button">
-						View All
+						{t("historyPreview.viewAll")}
 						<span className="codicon codicon-chevron-right" />
 					</button>
 				)}
@@ -151,7 +154,7 @@ const HistoryPreview = ({ showHistoryView }: HistoryPreviewProps) => {
 									<div className="history-task-content">
 										{item.isFavorited && (
 											<span
-												aria-label="Favorited"
+												aria-label={t("historyPreview.favoritedAriaLabel")}
 												className="codicon codicon-star-full"
 												style={{
 													color: "var(--vscode-button-background)",
@@ -177,7 +180,7 @@ const HistoryPreview = ({ showHistoryView }: HistoryPreviewProps) => {
 								fontSize: "var(--vscode-font-size)",
 								padding: "10px 0",
 							}}>
-							No recent tasks
+							{t("historyPreview.noRecentTasks")}
 						</div>
 					)}
 				</div>

@@ -305,7 +305,7 @@ const BrowserSessionRow = memo((props: BrowserSessionRowProps) => {
 	)
 
 	useEffect(() => {
-		if (actionHeight === 0 || actionHeight === Infinity) {
+		if (actionHeight === 0 || actionHeight === Number.POSITIVE_INFINITY) {
 			return
 		}
 		if (actionHeight > maxActionHeight) {
@@ -357,10 +357,10 @@ const BrowserSessionRow = memo((props: BrowserSessionRowProps) => {
 				{isBrowsing && !isLastMessageResume ? (
 					<ProgressIndicator />
 				) : (
-					<span className="codicon codicon-inspect" style={browserIconStyle}></span>
+					<span className="codicon codicon-inspect" style={browserIconStyle} />
 				)}
 				<span style={approveTextStyle}>
-					{isAutoApproved ? "Cline is using the browser:" : "Cline wants to use the browser:"}
+					{isAutoApproved ? "Cline이 브라우저를 사용 중입니다:" : "Cline이 브라우저를 사용하려고 합니다:"}
 				</span>
 			</div>
 			<div
@@ -417,8 +417,8 @@ const BrowserSessionRow = memo((props: BrowserSessionRowProps) => {
 						<BrowserCursor
 							style={{
 								position: "absolute",
-								top: `${(parseInt(mousePosition.split(",")[1]) / browserSettings.viewport.height) * 100}%`,
-								left: `${(parseInt(mousePosition.split(",")[0]) / browserSettings.viewport.width) * 100}%`,
+								top: `${(Number.parseInt(mousePosition.split(",")[1]) / browserSettings.viewport.height) * 100}%`,
+								left: `${(Number.parseInt(mousePosition.split(",")[0]) / browserSettings.viewport.width) * 100}%`,
 								transition: "top 0.3s ease-out, left 0.3s ease-out",
 							}}
 						/>
@@ -440,10 +440,10 @@ const BrowserSessionRow = memo((props: BrowserSessionRowProps) => {
 							padding: `9px 8px ${consoleLogsExpanded ? 0 : 8}px 8px`,
 						}}>
 						{consoleLogsExpanded ? <ChevronDownIcon size={16} /> : <ChevronRightIcon size={16} />}
-						<span style={consoleLogsTextStyle}>Console Logs</span>
+						<span style={consoleLogsTextStyle}>콘솔 로그</span>
 					</div>
 					{consoleLogsExpanded && (
-						<CodeBlock source={`${"```"}shell\n${displayState.consoleLogs || "(No new logs)"}\n${"```"}`} />
+						<CodeBlock source={`${"```"}shell\n${displayState.consoleLogs || "(새 로그 없음)"}\n${"```"}`} />
 					)}
 				</div>
 			</div>
@@ -455,18 +455,18 @@ const BrowserSessionRow = memo((props: BrowserSessionRowProps) => {
 			{pages.length > 1 && (
 				<div style={paginationContainerStyle}>
 					<div>
-						Step {currentPageIndex + 1} of {pages.length}
+						{currentPageIndex + 1} / {pages.length} 단계
 					</div>
 					<div style={paginationButtonGroupStyle}>
 						<VSCodeButton
 							disabled={currentPageIndex === 0 || isBrowsing}
 							onClick={() => setCurrentPageIndex((i) => i - 1)}>
-							Previous
+							이전
 						</VSCodeButton>
 						<VSCodeButton
 							disabled={currentPageIndex === pages.length - 1 || isBrowsing}
 							onClick={() => setCurrentPageIndex((i) => i + 1)}>
-							Next
+							다음
 						</VSCodeButton>
 					</div>
 				</div>
@@ -479,7 +479,7 @@ const BrowserSessionRow = memo((props: BrowserSessionRowProps) => {
 	// Height change effect
 	useEffect(() => {
 		const isInitialRender = prevHeightRef.current === 0
-		if (isLast && height !== 0 && height !== Infinity && height !== prevHeightRef.current) {
+		if (isLast && height !== 0 && height !== Number.POSITIVE_INFINITY && height !== prevHeightRef.current) {
 			if (!isInitialRender) {
 				onHeightChange(height > prevHeightRef.current)
 			}
@@ -517,7 +517,7 @@ const BrowserSessionRowContent = memo(
 			return (
 				<>
 					<div style={headerStyle}>
-						<span style={browserSessionStartedTextStyle}>Browser Session Started</span>
+						<span style={browserSessionStartedTextStyle}>브라우저 세션 시작됨</span>
 					</div>
 					<div style={codeBlockContainerStyle}>
 						<CodeBlock forceWrap={true} source={`${"```"}shell\n${message.text}\n${"```"}`} />
@@ -574,17 +574,17 @@ const BrowserActionBox = ({ action, coordinate, text }: { action: BrowserAction;
 	const getBrowserActionText = (action: BrowserAction, coordinate?: string, text?: string) => {
 		switch (action) {
 			case "launch":
-				return `Launch browser at ${text}`
+				return `${text}에서 브라우저 시작`
 			case "click":
-				return `Click (${coordinate?.replace(",", ", ")})`
+				return `클릭 (${coordinate?.replace(",", ", ")})`
 			case "type":
-				return `Type "${text}"`
+				return `입력 "${text}"`
 			case "scroll_down":
-				return "Scroll down"
+				return "아래로 스크롤"
 			case "scroll_up":
-				return "Scroll up"
+				return "위로 스크롤"
 			case "close":
-				return "Close browser"
+				return "브라우저 닫기"
 			default:
 				return action
 		}
@@ -594,7 +594,7 @@ const BrowserActionBox = ({ action, coordinate, text }: { action: BrowserAction;
 			<div style={browserActionBoxContainerInnerStyle}>
 				<div style={browseActionRowContainerStyle}>
 					<span style={browseActionRowStyle}>
-						<span style={browseActionTextStyle}>Browse Action: </span>
+						<span style={browseActionTextStyle}>브라우저 동작: </span>
 						{getBrowserActionText(action, coordinate, text)}
 					</span>
 				</div>

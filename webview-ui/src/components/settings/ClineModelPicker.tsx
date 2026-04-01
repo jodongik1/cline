@@ -384,17 +384,17 @@ const ClineModelPicker: React.FC<ClineModelPickerProps> = ({ isPopup, currentMod
 			</style>
 			<div style={{ display: "flex", flexDirection: "column" }}>
 				<label htmlFor="model-search">
-					<span style={{ fontWeight: 500 }}>Model</span>
+					<span style={{ fontWeight: 500 }}>모델</span>
 				</label>
 
 				<>
 					{/* Tabs */}
 					<TabsContainer style={{ marginTop: 4 }}>
 						<Tab active={activeTab === "recommended"} onClick={() => setActiveTab("recommended")}>
-							Recommended
+							추천
 						</Tab>
 						<Tab active={activeTab === "free"} onClick={() => setActiveTab("free")}>
-							Free
+							무료
 						</Tab>
 					</TabsContainer>
 
@@ -445,7 +445,7 @@ const ClineModelPicker: React.FC<ClineModelPickerProps> = ({ isPopup, currentMod
 							setIsDropdownVisible(true)
 						}}
 						onKeyDown={handleKeyDown}
-						placeholder="Search and select a model..."
+						placeholder="모델 검색 및 선택..."
 						role="combobox"
 						style={{
 							width: "100%",
@@ -455,7 +455,7 @@ const ClineModelPicker: React.FC<ClineModelPickerProps> = ({ isPopup, currentMod
 						value={searchTerm}>
 						{searchTerm && (
 							<div
-								aria-label="Clear search"
+								aria-label="검색 지우기"
 								className="input-icon-button codicon codicon-close"
 								onClick={() => {
 									setSearchTerm("")

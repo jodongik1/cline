@@ -83,10 +83,10 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 
 	// Shared label definitions for simple option types
 	const SIMPLE_OPTION_LABELS: Partial<Record<ContextMenuOptionType, string>> = {
-		[ContextMenuOptionType.Problems]: "Problems",
-		[ContextMenuOptionType.Terminal]: "Terminal",
-		[ContextMenuOptionType.URL]: "Paste URL to fetch contents",
-		[ContextMenuOptionType.NoResults]: "No results found",
+		[ContextMenuOptionType.Problems]: "문제",
+		[ContextMenuOptionType.Terminal]: "터미널",
+		[ContextMenuOptionType.URL]: "URL을 붙여넣어 내용 가져오기",
+		[ContextMenuOptionType.NoResults]: "결과를 찾을 수 없습니다",
 	}
 
 	// Get accessible label for an option (used for screen readers and aria-label)
@@ -102,13 +102,13 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 				if (option.value) {
 					return `${option.label}${option.description ? `, ${option.description}` : ""}`
 				}
-				return "Git Commits"
+				return "Git 커밋"
 			case ContextMenuOptionType.File:
 			case ContextMenuOptionType.Folder:
 				if (option.value) {
 					return option.label || option.value
 				}
-				return `Add ${option.type === ContextMenuOptionType.File ? "File" : "Folder"}`
+				return `${option.type === ContextMenuOptionType.File ? "파일" : "폴더"} 추가`
 			default:
 				return option.label || option.value || ""
 		}
@@ -144,7 +144,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 						</div>
 					)
 				}
-				return <span>Git Commits</span>
+				return <span>Git 커밋</span>
 			case ContextMenuOptionType.File:
 			case ContextMenuOptionType.Folder:
 				if (option.value) {

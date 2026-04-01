@@ -12,6 +12,7 @@ import { visit } from "unist-util-visit"
 import MermaidBlock from "@/components/common/MermaidBlock"
 import { Button } from "@/components/ui/button"
 import { useExtensionState } from "@/context/ExtensionStateContext"
+import { useTranslation } from "@/i18n/useTranslation"
 import { cn } from "@/lib/utils"
 import { FileServiceClient, StateServiceClient } from "@/services/grpc-client"
 import { WithCopyButton } from "./CopyButton"
@@ -118,6 +119,7 @@ MemoizedMarkdown.displayName = "MemoizedMarkdown"
  * A component for Act Mode text that contains a clickable toggle and keyboard shortcut hint.
  */
 const ActModeHighlight: React.FC = () => {
+	const { t } = useTranslation()
 	const { mode } = useExtensionState()
 
 	return (
@@ -136,11 +138,11 @@ const ActModeHighlight: React.FC = () => {
 					)
 				}
 			}}
-			title={mode === "plan" ? "Click to toggle to Act Mode" : "Already in Act Mode"}>
+			title={mode === "plan" ? t("markdown.toggleActMode") : t("markdown.alreadyActMode")}>
 			<div className="p-1 rounded-md bg-code flex items-center justify-end w-7 border border-input-border">
 				<div className="rounded-full bg-link w-2 h-2" />
 			</div>
-			Act Mode (⌘⇧A)
+			{t("markdown.actModeLabel")}
 		</span>
 	)
 }

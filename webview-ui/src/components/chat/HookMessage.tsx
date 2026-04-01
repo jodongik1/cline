@@ -147,8 +147,9 @@ const HookMessage = memo(({ message, CommandOutput }: HookMessageProps) => {
 					style={{
 						color: normalColor,
 						marginBottom: "-1.5px",
-					}}></span>
-				<span style={{ color: normalColor, fontWeight: "bold" }}>Hook:</span>
+					}}
+				/>
+				<span style={{ color: normalColor, fontWeight: "bold" }}>훅:</span>
 				<span style={{ color: normalColor }}>{metadata.hookName}</span>
 				{metadata.toolName && (
 					<span style={{ color: "var(--vscode-descriptionForeground)", fontSize: "0.9em" }}>({metadata.toolName})</span>
@@ -200,14 +201,14 @@ const HookMessage = memo(({ message, CommandOutput }: HookMessageProps) => {
 								flexShrink: 0,
 							}}>
 							{isRunning
-								? "Running"
+								? "실행 중"
 								: isFailed
-									? "Failed"
+									? "실패"
 									: isCancelled
-										? "Aborted"
+										? "중단됨"
 										: isCompleted
-											? "Completed"
-											: "Unknown"}
+											? "완료됨"
+											: "알 수 없음"}
 						</span>
 						{metadata.exitCode !== undefined && metadata.exitCode !== 0 && (
 							<span
@@ -244,7 +245,7 @@ const HookMessage = memo(({ message, CommandOutput }: HookMessageProps) => {
 								cursor: "pointer",
 								fontFamily: "inherit",
 							}}>
-							Abort
+							중단
 						</button>
 					)}
 				</div>
@@ -258,7 +259,7 @@ const HookMessage = memo(({ message, CommandOutput }: HookMessageProps) => {
 							fontSize: "13px",
 							color: "var(--vscode-descriptionForeground)",
 						}}>
-						Took longer than 30 seconds. Check for infinite loops or add timeouts to network requests.
+						30초를 초과했습니다. 무한 루프가 있는지 확인하거나 네트워크 요청에 타임아웃을 추가하세요.
 					</div>
 				)}
 
@@ -270,7 +271,7 @@ const HookMessage = memo(({ message, CommandOutput }: HookMessageProps) => {
 							fontSize: "13px",
 							color: "var(--vscode-descriptionForeground)",
 						}}>
-						Hook returned invalid JSON. See error details below for more information.
+						훅이 유효하지 않은 JSON을 반환했습니다. 자세한 내용은 아래 오류 세부 정보를 확인하세요.
 					</div>
 				)}
 
