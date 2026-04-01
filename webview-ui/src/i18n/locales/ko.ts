@@ -217,6 +217,9 @@ const ko: Record<string, string> = {
 
 	// Chat
 	"chat.placeholder": "메시지를 입력하세요...",
+	"chat.messagePlaceholder": "메시지를 입력하세요...",
+	"chat.taskPlaceholder": "작업을 입력하세요...",
+	"chat.inputHint": "@ 컨텍스트 추가, / 슬래시 명령어 & 워크플로우, shift를 누른 채로 파일/이미지 드래그",
 	"chat.send": "전송",
 
 	// History
@@ -414,6 +417,7 @@ const ko: Record<string, string> = {
 	"browser.sessionStarted": "브라우저 세션 시작됨",
 	"browser.usingBrowser": "Cline이 브라우저를 사용 중입니다:",
 	"browser.wantsBrowser": "Cline이 브라우저를 사용하려고 합니다:",
+	"browser.step": "단계",
 	"browser.consoleLogs": "콘솔 로그",
 	"browser.noNewLogs": "(새 로그 없음)",
 	"browser.previous": "이전",
@@ -529,6 +533,23 @@ const ko: Record<string, string> = {
 	"featureTip.9": "채팅창에 이미지를 드래그 앤 드롭하면 Cline과 스크린샷을 공유할 수 있습니다.",
 	"featureTip.10": "Cline은 웹사이트를 탐색할 수 있습니다 \u2014 브라우저에서 로컬 개발 서버를 테스트해보세요.",
 	"featureTip.11": "/reportbug를 사용하면 진단 컨텍스트가 포함된 GitHub 이슈를 빠르게 제출할 수 있습니다.",
+
+	// What's New Modal
+	"whatsNew.title": "v{version} 새 기능",
+	"whatsNew.supportText": "Cline을 지원해주세요",
+	"whatsNew.githubStar": "GitHub에서 스타 눌러주기",
+	"whatsNew.followOnX": "X에서 팔로우하기",
+	"whatsNew.joinDiscord": "Discord 참여하기",
+	"whatsNew.starOnGitHub": "GitHub에서 스타 누르기",
+	"whatsNew.joinSubreddit": "서브레딧 참여하기",
+	"whatsNew.followOnLinkedIn": "LinkedIn에서 팔로우하기",
+
+	// Cline Model Picker
+	"clineModelPicker.model": "모델",
+	"clineModelPicker.recommended": "추천",
+	"clineModelPicker.free": "무료",
+	"clineModelPicker.searchPlaceholder": "모델 검색 및 선택...",
+	"clineModelPicker.clearSearch": "검색 지우기",
 
 	// Markdown Block
 	"markdown.toggleActMode": "클릭하여 Act 모드로 전환",

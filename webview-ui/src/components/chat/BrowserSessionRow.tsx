@@ -11,6 +11,7 @@ import { BrowserSettingsMenu } from "@/components/browser/BrowserSettingsMenu"
 import { ChatRowContent, ProgressIndicator } from "@/components/chat/ChatRow"
 import CodeBlock, { CODE_BLOCK_BG_COLOR } from "@/components/common/CodeBlock"
 import { useExtensionState } from "@/context/ExtensionStateContext"
+import { useTranslation } from "@/i18n/useTranslation"
 import { cn } from "@/lib/utils"
 import { FileServiceClient } from "@/services/grpc-client"
 
@@ -107,6 +108,7 @@ const headerStyle: CSSProperties = {
 const BrowserSessionRow = memo((props: BrowserSessionRowProps) => {
 	const { messages, isLast, onHeightChange, lastModifiedMessage, onSetQuote } = props
 	const { browserSettings } = useExtensionState()
+	const { t } = useTranslation()
 	const prevHeightRef = useRef(0)
 	const [maxActionHeight, setMaxActionHeight] = useState(0)
 	const [consoleLogsExpanded, setConsoleLogsExpanded] = useState(false)
@@ -359,9 +361,7 @@ const BrowserSessionRow = memo((props: BrowserSessionRowProps) => {
 				) : (
 					<span className="codicon codicon-inspect" style={browserIconStyle} />
 				)}
-				<span style={approveTextStyle}>
-					{isAutoApproved ? "Cline이 브라우저를 사용 중입니다:" : "Cline이 브라우저를 사용하려고 합니다:"}
-				</span>
+				<span style={approveTextStyle}>{isAutoApproved ? t("browser.usingBrowser") : t("browser.wantsBrowser")}</span>
 			</div>
 			<div
 				style={{
@@ -455,18 +455,18 @@ const BrowserSessionRow = memo((props: BrowserSessionRowProps) => {
 			{pages.length > 1 && (
 				<div style={paginationContainerStyle}>
 					<div>
-						{currentPageIndex + 1} / {pages.length} 단계
+						{currentPageIndex + 1} / {pages.length} {t("browser.step")}
 					</div>
 					<div style={paginationButtonGroupStyle}>
 						<VSCodeButton
 							disabled={currentPageIndex === 0 || isBrowsing}
 							onClick={() => setCurrentPageIndex((i) => i - 1)}>
-							이전
+							{t("browser.previous")}
 						</VSCodeButton>
 						<VSCodeButton
 							disabled={currentPageIndex === pages.length - 1 || isBrowsing}
 							onClick={() => setCurrentPageIndex((i) => i + 1)}>
-							다음
+							{t("browser.next")}
 						</VSCodeButton>
 					</div>
 				</div>
@@ -506,6 +506,7 @@ const BrowserSessionRowContent = memo(
 		setMaxActionHeight,
 		onSetQuote,
 	}: BrowserSessionRowContentProps) => {
+		const { t } = useTranslation()
 		const handleToggle = useCallback(() => {
 			if (message.say === "api_req_started") {
 				setMaxActionHeight(0)
@@ -517,7 +518,7 @@ const BrowserSessionRowContent = memo(
 			return (
 				<>
 					<div style={headerStyle}>
-						<span style={browserSessionStartedTextStyle}>브라우저 세션 시작됨</span>
+						<span style={browserSessionStartedTextStyle}>{t("browser.sessionStarted")}</span>
 					</div>
 					<div style={codeBlockContainerStyle}>
 						<CodeBlock forceWrap={true} source={`${"```"}shell\n${message.text}\n${"```"}`} />
@@ -571,20 +572,21 @@ const BrowserSessionRowContent = memo(
 )
 
 const BrowserActionBox = ({ action, coordinate, text }: { action: BrowserAction; coordinate?: string; text?: string }) => {
+	const { t } = useTranslation()
 	const getBrowserActionText = (action: BrowserAction, coordinate?: string, text?: string) => {
 		switch (action) {
 			case "launch":
-				return `${text}에서 브라우저 시작`
+				return `${t("browser.action.launchPrefix")} ${text}`
 			case "click":
-				return `클릭 (${coordinate?.replace(",", ", ")})`
+				return `${t("browser.action.clickPrefix")} (${coordinate?.replace(",", ", ")})`
 			case "type":
-				return `입력 "${text}"`
+				return `${t("browser.action.typePrefix")} "${text}"`
 			case "scroll_down":
-				return "아래로 스크롤"
+				return t("browser.action.scrollDown")
 			case "scroll_up":
-				return "위로 스크롤"
+				return t("browser.action.scrollUp")
 			case "close":
-				return "브라우저 닫기"
+				return t("browser.action.close")
 			default:
 				return action
 		}
@@ -594,7 +596,7 @@ const BrowserActionBox = ({ action, coordinate, text }: { action: BrowserAction;
 			<div style={browserActionBoxContainerInnerStyle}>
 				<div style={browseActionRowContainerStyle}>
 					<span style={browseActionRowStyle}>
-						<span style={browseActionTextStyle}>브라우저 동작: </span>
+						<span style={browseActionTextStyle}>{t("browser.action.label")} </span>
 						{getBrowserActionText(action, coordinate, text)}
 					</span>
 				</div>

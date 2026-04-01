@@ -220,6 +220,9 @@ const en: Record<string, string> = {
 
 	// Chat
 	"chat.placeholder": "Type a message...",
+	"chat.messagePlaceholder": "Type a message...",
+	"chat.taskPlaceholder": "What would you like to do?",
+	"chat.inputHint": "@ to add context, / for slash commands & workflows, drag and drop files/images with shift",
 	"chat.send": "Send",
 
 	// History
@@ -417,6 +420,7 @@ const en: Record<string, string> = {
 	"browser.sessionStarted": "Browser Session Started",
 	"browser.usingBrowser": "Cline is using the browser:",
 	"browser.wantsBrowser": "Cline wants to use the browser:",
+	"browser.step": "step",
 	"browser.consoleLogs": "Console Logs",
 	"browser.noNewLogs": "(No new logs)",
 	"browser.previous": "Previous",
@@ -532,6 +536,23 @@ const en: Record<string, string> = {
 	"featureTip.9": "You can drag and drop images into the chat to share screenshots with Cline.",
 	"featureTip.10": "Cline can browse websites \u2014 ask it to test your local dev server in the browser.",
 	"featureTip.11": "Use /reportbug to quickly file a GitHub issue with diagnostic context included.",
+
+	// What's New Modal
+	"whatsNew.title": "New in v{version}",
+	"whatsNew.supportText": "Please support Cline by",
+	"whatsNew.githubStar": "starring us on GitHub",
+	"whatsNew.followOnX": "Follow us on X",
+	"whatsNew.joinDiscord": "Join our Discord",
+	"whatsNew.starOnGitHub": "Star us on GitHub",
+	"whatsNew.joinSubreddit": "Join our subreddit",
+	"whatsNew.followOnLinkedIn": "Follow us on LinkedIn",
+
+	// Cline Model Picker
+	"clineModelPicker.model": "Model",
+	"clineModelPicker.recommended": "Recommended",
+	"clineModelPicker.free": "Free",
+	"clineModelPicker.searchPlaceholder": "Search and select model...",
+	"clineModelPicker.clearSearch": "Clear search",
 
 	// Markdown Block
 	"markdown.toggleActMode": "Click to toggle to Act Mode",
