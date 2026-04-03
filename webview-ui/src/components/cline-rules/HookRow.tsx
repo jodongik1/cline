@@ -68,7 +68,7 @@ const HookRow: React.FC<HookRowProps> = ({
 							className="mx-1"
 							disabled={isWindows}
 							key={hookName}
-							onClick={() => onToggle(hookName, !enabled)}
+							onCheckedChange={(checked) => onToggle(hookName, checked)}
 							style={isWindows ? { opacity: 0.5, cursor: "not-allowed" } : undefined}
 						/>
 					</div>

@@ -1,210 +1,207 @@
-# General writing guide
+# 일반적인 글쓰기 가이드 (General writing guide)
 
-# How I want you to write 
+# 내가 원하는 글쓰기 방식
 
-I'm gonna write something technical.
+나는 기술적인 글을 쓰려고 합니다.
 
-It's often less about the nitty-gritty details of the tech stuff and more about learning something new or getting a solution handed to me on a silver platter.
+대부분의 경우 기술의 아주 세세한 부분보다는 새로운 무언가를 배우거나, 해결책을 아주 쉽게 제공받는 것이 더 중요합니다.
 
-Look, when I read, I want something out of it. So when I write, I gotta remember that my readers want something too. This whole piece? It's about cluing in anyone who writes for me, or wants me to write for them, on how I see this whole writing product thing.
+독자들은 글을 읽을 때 무언가 얻기를 원합니다. 그러니 내가 글을 쓸 때도 독자들이 원하는 것이 있다는 것을 기억해야 합니다. 이 글은 나를 위해 글을 쓰거나, 내가 글을 써주길 원하는 모든 사람에게 내가 이 '글쓰기 제품'을 어떻게 바라보는지 알려주기 위한 것입니다.
 
-I'm gonna lay out a checklist of stuff I'd like to have. It'll make the whole writing gig a bit smoother, you know?
+내가 원하는 체크리스트를 정리해 보겠습니다. 이 리스트를 따르면 글쓰기 작업이 훨씬 수월해질 것입니다.
 
-## Crafting Compelling Titles
+## 매력적인 제목 만들기 (Crafting Compelling Titles)
 
-I often come across titles like "How to do X with Y,Z technology." These don't excite me because X or Y are usually unfamiliar unless they're already well-known. Its rarely the dream to use X unless X is the dream. 
+나는 종종 "X 기술로 Y, Z 하는 법"과 같은 제목을 봅니다. X나 Y가 이미 유명하지 않는 한 그런 제목은 흥미롭지 않습니다. X를 사용하는 것 자체가 꿈인 경우는 드뭅니다. X는 목적을 위한 수단일 뿐입니다.
 
-My dream isn’t to use instructor, its to do something valueble with the data it extracts
+나의 꿈은 `instructor`를 사용하는 것이 아니라, 그것이 추출한 데이터로 가치 있는 무언가를 하는 것입니다.
 
-An effective title should:
+효과적인 제목은 다음을 충족해야 합니다:
 
-- Evoke an emotional response
-- Highlight someone's goal
-- Offer a dream or aspiration
-- Challenge or comment on a belief
-- Address someone's problems
+- 감정적인 반응을 이끌어냄
+- 누군가의 목표를 강조함
+- 꿈이나 포부를 제안함
+- 믿음에 도전하거나 의견을 제시함
+- 누군가의 문제를 해결함
 
-I believe it's more impactful to write about specific problems. If this approach works, you can replicate it across various scenarios rather than staying too general.
+구체적인 문제에 대해 쓰는 것이 더 임팩트가 크다고 믿습니다. 이 방식이 작동한다면, 너무 일반적인 수준에 머무르는 대신 다양한 시나리오에 걸쳐 이를 재현할 수 있습니다.
 
-- Time management for everyone can be a 15$ ebook
-- Time management for executives is a 2000$ workshop
+- 모두를 위한 시간 관리는 15달러짜리 이북(ebook)이 될 수 있습니다.
+- 경영진을 위한 시간 관리는 2000달러짜리 워크숍이 됩니다.
 
-Aim for titles that answer questions you think everyone is asking, or address thoughts people have but can't quite articulate.
+모두가 묻고 있다고 생각하는 질문에 답하거나, 사람들이 생각은 하지만 명확히 표현하지 못하는 부분을 짚어주는 제목을 목표로 하세요.
 
-Instead of "How I do something" or "How to do something," frame it from the reader's perspective with "How you can do something." This makes the title more engaging. Just make sure the difference is advisory if the content is subjective. “How I made a million dollars” might be more reasonable than “How to make a million dollars” since you are the subject and the goal might be to share your story in hopes of helping others.
+"내가 어떻게 하는지"나 "무엇을 하는 법" 대신, 독자의 관점에서 "당신이 어떻게 할 수 있는지"로 프레임을 짜세요. 이렇게 하면 제목이 더 매력적으로 다가옵니다. 다만 내용이 주관적인 경우에는 조언적인 차이를 두어야 합니다. "내가 어떻게 백만 달러를 벌었나"는 당신이 주체이고 다른 사람에게 도움이 되길 바라는 마음으로 이야기를 공유하는 것이므로, "백만 달러 버는 법"보다 더 합리적일 수 있습니다.
 
-This approach ultimately trains the reader to have a stronger emotional connection to your content.
+이러한 접근 방식은 궁극적으로 독자가 당신의 콘텐츠에 더 강한 감정적 연결을 갖도록 훈련시킵니다.
 
-- "How I do X"
-- "How You Can do X"
+- "내가 X를 하는 법"
+- "당신이 X를 할 수 있는 법"
 
-Between these two titles, it's obvious which one resonates more emotionally.
+이 두 제목 중 어느 쪽이 감정적으로 더 와닿는지는 분명합니다.
 
-You can take it further by adding specific conditions. For instance, you could target a particular audience or set a timeframe:
+특정 조건을 추가하여 더 발전시킬 수도 있습니다. 예를 들어 특정 대상을 타겟팅하거나 시간 제한을 설정할 수 있습니다:
 
-- How to set up Braintrust
-- How to set up Braintrust in 5 minutes
+- 브레인트러스트(Braintrust) 설정법
+- 5분 만에 브레인트러스트(Braintrust) 설정하기
 
-## NO adjectiives
+## 형용사 사용 금지 (NO adjectives)
 
-I want you to almost always avoid adjectives and try to use evidence instead. Instead of saying "production ready," you can write something like "scaling this to 100 servers or 1 million documents per second." Numbers like that will tell you exactly what the specificity of your product is. If you have to use adjectives rather than evidence, you are probably making something up. 
+형용사는 거의 항상 피하고 대신 증거(evidence)를 사용하십시오. "운영 환경에 적합한(production ready)"이라고 말하는 대신, "100대의 서버 또는 초당 100만 개의 문서로 확장 가능한"과 같이 쓰십시오. 이런 숫자들이 제품의 구체성을 정확히 말해줍니다. 증거 대신 형용사를 사용해야 한다면, 당신은 아마 무언가를 지셔내고 있는 것일 겁니다.
 
-There's no reason to say something like "blazingly fast" unless those things are already known phrases.
+"빛처럼 빠른(blazingly fast)"과 같은 표현은 이미 널리 쓰이는 관용구가 아닌 한 사용할 이유가 없습니다.
 
-Instead, say "200 times faster" or "30% faster." A 30% improvement in recommendation system speed is insane.
+대신 "200배 더 빠른" 또는 "30% 더 빠른"이라고 말하세요. 추천 시스템 속도가 30% 향상된 것은 엄청난 일입니다.
 
-There's a 200 times performance improvement because we went from one programming language to another. It's just something that's a little bit more expected and understandable.
+프로그래밍 언어를 바꾸었기 때문에 성능이 200배 향상되었다고 하면, 훨씬 더 예상 가능하고 이해하기 쉽습니다.
 
-Another test that I really like using recently is tracking whether or not the statements you make can be:
+최근에 내가 즐겨 사용하는 또 다른 테스트는 당신의 진술이 다음과 같을 수 있는지 확인하는 것입니다:
 
-- Visualized
-- Proven false
-- Said only by you
+- 시각화될 수 있는가
+- 거짓임을 증명할 수 있는가 (반증 가능성)
+- 오직 당신만이 말할 수 있는가
 
-If you can nail all three, the claim you make will be more likely to resonate with an audience because only you can say it.
+이 세 가지를 모두 충족한다면, 그 주장은 당신만이 할 수 있는 말이기 때문에 독자들에게 더 깊게 전달될 것입니다.
 
-Earlier this year, I had an example where I embedded all of Wikipedia in 17 minutes with 20 bucks, and it got half a million views. All we posted was a video of me kicking off the job, and then you can see all the log lines go through. You see the number of containers go from 1 out of 50 to 50 out of 50.
+올해 초, 위키피디아 전체를 20달러로 17분 만에 임베딩한 사례가 있었는데, 조회수가 50만 회를 기록했습니다. 우리가 게시한 것은 내가 작업을 시작하는 영상뿐이었고, 로그 라인이 지나가는 것을 볼 수 있었습니다. 컨테이너 수가 1개에서 50개로 늘어나는 것을 눈으로 직접 확인했죠.
 
-It was easy to visualize and could have been proven false by being unreproducible. Lastly, Modal is the only company that could do that in such an effortless way, which made it unique.
+이는 시각화하기 쉬웠고, 재현 불가능하다면 거짓임이 증명될 수 있었습니다. 마지막으로, Modal만이 그런 일을 그렇게 손쉽게 해낼 수 있는 유일한 회사였기에 독특했습니다.
 
-## Keep It Digestible 
-    - Aim for 5-minute reads
-    - Write at a Grade 10 reading level
-    - Break up long paragraphs
-    - Use headers and bullet points
+## 소화하기 쉽게 만들기 (Keep It Digestible)
+- 5분 내에 읽을 수 있는 분량을 목표로 하세요.
+- 초등/중등 수준의 읽기 난이도로 쓰세요.
+- 긴 문단은 나누세요.
+- 헤더와 불렛 포인트를 사용하세요.
 
-## Make It Scannable
-    - Bold key points
-    - Use subheadings every 3-4 paragraphs
-    - Include plenty of white space
-    - Add relevant examples
+## 훑어보기 좋게 만들기 (Make It Scannable)
+- 핵심 포인트는 **굵게** 표시하세요.
+- 3~4문단마다 소제목을 사용하세요.
+- 여백을 충분히 두세요.
+- 관련 예시를 추가하세요.
 
-This structure works whether you're writing a tweet thread or a full blog post. The key is making complex ideas accessible.
+이 구조는 트윗 타래든 전체 블로그 포스트든 상관없이 작동합니다. 핵심은 복잡한 아이디어를 접근 가능하게 만드는 것입니다.
 
-# Guide to Writing Cline Documentation
+# Cline 문서 작성 가이드 (Guide to Writing Cline Documentation)
 
-## Some general principles for explaining features
+## 기능 설명의 일반 원칙
 
-If you're talking about a feature, it's helpful to start with a human-readable explanations that cover what the feature is in simple terms. Skip jargon and explain it like you're talking to someone who's never seen it before. This sets the foundation for everything that follows.
+기능에 대해 이야기할 때는, 그 기능이 무엇인지 간단한 용어로 설명하는 인간이 읽기 쉬운 설명부터 시작하는 것이 도움이 됩니다. 전문 용어는 빼고 한 번도 본 적 없는 사람에게 말하듯 설명하세요. 이것이 뒤에 이어지는 모든 내용의 토대가 됩니다.
 
-Combine location and usage into one flowing section. Tell users exactly where to find the feature and how to use it, but weave the instructions into natural prose with a good balance of bullet points, numbered lists, code examples (if applicable), mintlify components, and headers/subheaders. Users shouldn't have to jump between separate "where is it" and "how do I use it" sections.
+위치와 사용법을 하나의 흐름으로 묶으세요. 사용자에게 기능이 어디에 있는지, 어떻게 사용하는지 정확히 알려주되, 불렛 포인트, 번호 매겨진 목록, 코드 예시(해당하는 경우), Mintlify 컴포넌트, 헤더/소제목을 잘 조화시켜 자연스러운 글로 엮어내세요. 사용자가 "어디 있지?" 섹션과 "어떻게 쓰지?" 섹션 사이를 왔다 갔다 하게 해서는 안 됩니다.
 
-Show the feature in action with real examples like actual files, workflows, or code. Users need to see concrete implementations, not just abstract descriptions. This is where understanding turns into practical knowledge.
+실제 파일, 워크플로우 또는 코드를 사용한 실제 사례로 기능이 작동하는 모습을 보여주세요. 사용자는 추상적인 설명이 아니라 구체적인 구현 사례를 보아야 합니다. 여기서 이해가 실질적인 지식으로 바뀝니다.
 
-When talking about a feature, include an inspiration section that sparks imagination. This section pushes people from understanding to action by showing them what becomes possible when they use this feature creatively. It's what separates good documentation from great documentation.
+기능에 대해 이야기할 때 영감을 주는(inspiration) 섹션을 포함하여 상상력을 자극하세요. 이 섹션은 사람들이 이 기능을 창의적으로 사용할 때 무엇이 가능해지는지를 보여줌으로써 이해를 넘어 행동으로 나아가게 합니다. 이것이 좋은 문서와 훌륭한 문서를 가르는 차이입니다.
 
-## Writing Principles That Actually Work
+## 실제로 작동하는 글쓰기 원칙
 
-### Write for Action, Not Just Understanding
+### 이해가 아닌 행동을 위해 쓰세요
+문서는 사용자가 무언가를 시도하도록 동기를 부여해야 합니다. 단순히 작동 방식을 설명하는 대신 사용자가 이를 통해 무엇을 달성할 수 있는지에 집중하세요. 영감을 주는 섹션은 매우 중요합니다. 수동적인 독자를 능동적인 사용자로 변화시키는 지점이기 때문입니다.
 
-Documentation should motivate users to try things. Instead of just explaining how something works, focus on what users can accomplish with it. The inspiration section is crucial - it's what transforms passive readers into active users.
+### 자연스러운 이야기 흐름 만들기
+"이게 뭐지?"에서 시작하여 "어떻게 쓰지?", "실제 예시는 여기 있어", "이걸로 무엇을 할 수 있을지 상상해 봐"로 자연스럽게 이어지는 대화처럼 느껴져야 합니다.
 
-### Create a Natural Story Flow
+### 장난감 데모가 아닌 실제 예시 보여주기
+사용자가 복사해서 적응시킬 수 있는 실제 워크플로우 파일, 실제 코드 스니펫, 구체적인 구현 사례를 제공하세요. 추상적인 예시는 누구에게도 도움이 되지 않습니다. 사용자는 자신이 실제로 다루게 될 것이 무엇인지 정확히 보고 싶어 합니다.
 
-It should feel like a conversation that naturally progresses from "what is this?" to "how do I use it?" to "here's a real example" to "imagine what you could do with this." 
+### 훑어보기 좋지만 파편화되지 않게 유지하기
+전체적으로 읽었을 때는 자연스럽게 흐르는 글로 쓰되, 사용자가 문제를 해결할 때 특정 정보를 빠르게 찾을 수 있도록 구조화하세요. 빽빽한 텍스트 벽은 피하되, 너무 많은 불렛 포인트와 굵은 헤더로 과도하게 포맷팅하는 것도 피하세요. 모든 요소 사이에 시각적 위계의 균형이 잡혀 있어야 페이지를 빠르게 훑어보고 원하는 것을 찾을 수 있습니다.
 
-### Show Real Examples, Not Toy Demos
+## 언어 및 톤 가이드라인
 
-Provide actual workflow files, real code snippets, and concrete implementations that users can copy and adapt. Abstract examples don't help anyone - users want to see exactly what they'll be working with.
+수준을 낮추지 않으면서도 명확하게 쓰세요. 가능하면 단순한 언어를 사용하되, 사용자가 알아야 할 기술 용어는 피하지 마세요. 소프트웨어의 내부 작동 방식보다는 사용자가 무엇을 달성할 수 있는지의 관점에서 개념을 설명하세요.
 
-### Keep It Scannable But Not Fragmented
+대화하듯 격려하는 어조로 쓰세요. "다음을 시도해 볼 수도 있습니다" 또는 "~가 작동하면"과 같은 문구는 딱딱한 지시형 언어보다 더 자연스럽게 느껴집니다. 사용자가 새로운 것을 시도하는 데 자신감을 갖도록 도와주세요.
 
-Write in prose that flows naturally when read completely, but structure it so users can quickly find specific information when they're troubleshooting. Avoid dense walls of text, but also avoid over-formatting with excessive bullet points and bold headers. There should be a nice visual heirarchy of balance between all elements, so you can quickly scan the page and find what you're looking for.
+내용을 간결하고 목적이 분명하게 유지하세요. 모든 문장은 사용자가 무언가를 이해하도록 돕거나 무언가를 하도록 도와야 합니다. 둘 중 어느 목적도 충족하지 못한다면 삭제하세요.
 
-## Language and Tone Guidelines
+맥락과 이유를 함께 제공하세요. 사용자는 단순히 무엇을 해야 하는지뿐만 아니라 왜 그렇게 하는지도 알고 싶어 합니다. 이는 신뢰를 쌓고, 상황이 예상대로 돌아가지 않을 때 문제를 해결하는 데 도움이 됩니다.
 
-Write clearly without dumbing things down. Use simple language when possible, but don't avoid technical terms that users need to know. Explain concepts in terms of what users can achieve rather than how the software works internally.
+## 실질적인 구현
 
-Make your writing conversational and encouraging. Phrases like "you can also try" or "when that works" feel more natural than rigid instructional language. Help users feel confident about trying new things.
+각 기능 페이지는 4섹션 접근 방식을 일관되게 유지하되, 그 구조 안에서 내용이 자연스럽게 흐르도록 하세요. 영상이나 스크린샷과 같은 시각적 자산을 활용하여 텍스트 내용을 보완하세요. 시각적 자산은 종종 수십 개의 문장보다 더 효과적으로 정보를 전달합니다.
 
-Keep content concise and purposeful. Every sentence should either help users understand something or help them do something. If it doesn't serve one of those purposes, cut it.
+관련 리소스, 예시, 더 깊은 실무 문서로 넉넉하게 링크를 거세요. 사용자는 막막함을 느끼거나 다음에 어디로 가야 할지 고민해서는 안 됩니다. 사용자가 참고하고 자신의 필요에 맞게 수정할 수 있는 실제 예시 저장소를 유지하세요.
 
-Build in context and reasoning. Users want to understand why they're doing something, not just what to do. This builds confidence and helps them troubleshoot when things don't work exactly as expected.
+기술 매뉴얼이라기보다는 경험 많은 동료의 유익한 조언처럼 느껴지는 문서를 만드는 것이 목표입니다. 사용자는 글을 다 읽었을 때 기능에 대해 알게 된 것뿐만 아니라, 자신이 무엇을 해낼 수 있을지에 대해 기대감을 느껴야 합니다.
 
-## Practical Implementation
+## 구조와 유연성의 조화
 
-Structure each feature page consistently with the four-section approach, but let the content flow naturally within that structure. Use visual assets like videos and screenshots to complement the written content - they often communicate more effectively than paragraphs of description.
+일관된 문서 구조를 유지하는 것도 중요하지만, 내용이 너무 경직되지 않고 자연스럽게 느껴지도록 하는 것도 중요합니다. 가이드라인을 따르되 여전히 대화하듯 매력적인 글이 되어야 합니다.
 
-Link generously to related resources, examples, and deeper documentation. Users should never feel stuck or wonder where to go next. Maintain a repository of real examples that users can reference and adapt to their own needs.
+## 나쁜 예시
 
-The goal is documentation that feels more like helpful guidance from an experienced colleague than a technical manual. Users should finish reading feeling excited about what they can accomplish, not just informed about what the feature does.
+나는 개인적으로 불렛 포인트, **굵은 텍스트**, 콜론(:) 뒤에 내용이 이어지는 이런 패턴을 정말 싫어합니다:
 
-## Balance Structure with Flexibility
-
-While they discuss having consistent documentation structure, there's also mention of making content feel less rigid and more natural. The writing should follow guidelines while still feeling conversational and engaging. 
-
-## Bad examples
-
-I personally hate this pattern of bullet point **Bold Text** colon and then more text:
 <bad_example_of_writing>
 #### macOS
 
-1. **Switch to bash**: Go to Cline Settings → Terminal → Default Terminal Profile → Select "bash"
-2. **Disable Oh-My-Zsh temporarily**: If using zsh, try `mv ~/.zshrc ~/.zshrc.backup` and restart VSCode
-3. **Set environment**: Add to your shell config: `export TERM=xterm-256color`
+1. **bash로 전환**: Cline 설정 → 터미널 → 기본 터미널 프로필 → "bash" 선택
+2. **Oh-My-Zsh 일시 중지**: zsh를 사용 중이라면 `mv ~/.zshrc ~/.zshrc.backup`을 실행하고 VSCode 재시작
+3. **환경 설정**: 셸 설정에 추가: `export TERM=xterm-256color`
 
 #### Windows
 
-1. **Use PowerShell 7**: Install from Microsoft Store, then select it in Cline settings
-2. **Disable Windows ConPTY**: VSCode Settings → Terminal › Integrated: Windows Enable Conpty → Uncheck
-3. **Try Command Prompt**: Sometimes simpler is better - switch to cmd.exe
+1. **PowerShell 7 사용**: Microsoft Store에서 설치한 후 Cline 설정에서 선택
+2. **Windows ConPTY 비활성화**: VSCode 설정 → 터미널 › Integrated: Windows Enable Conpty → 체크 해제
+3. **명령 프롬프트 시도**: 때로는 단순한 게 최고입니다 - cmd.exe로 전환
 
 #### Linux
 
-1. **Use bash**: Most reliable option - select in Cline settings
-2. **Check permissions**: Ensure VSCode has terminal access permissions
-3. **Disable custom prompts**: Comment out prompt customizations in `.bashrc`
+1. **bash 사용**: 가장 안정적인 옵션 - Cline 설정에서 선택
+2. **권한 확인**: VSCode에 터미널 접근 권한이 있는지 확인
+3. **커스텀 프롬프트 비활성화**: `.bashrc`에서 프롬프트 커스텀 설정 주석 처리
 
 </bad_example_of_writing>
 
-We should instead strive to write beautiful docs that read well. We can use bullet points and numbered lists but it should read naturally and be delightful to look at hierachally when scanning through the doc. There should be a good balance between blocks of text, code snippets, paragraphs, numbered lists, and bullet points. When scanning the documentation visually, you should feel like you're adminiring a tasteful art piece.
+우리는 대신 잘 읽히는 아름다운 문서를 쓰기 위해 노력해야 합니다. 불렛 포인트와 번호 매겨진 목록을 사용할 수 있지만, 자연스럽게 읽혀야 하며 문서를 훑어볼 때 시각적 위계가 즐거워야 합니다. 텍스트 블록, 코드 스니펫, 문단, 목록 사이의 균형이 좋아야 합니다. 문서를 시각적으로 훑어볼 때 품격 있는 예술 작품을 감상하는 듯한 느낌을 주어야 합니다.
 
 <good_example_of_writing>
 #### macOS
 
-The most common fix is switching to bash. Navigate to Cline Settings → Terminal → Default Terminal Profile and select "bash" from the dropdown.
+가장 일반적인 해결 방법은 bash로 전환하는 것입니다. Cline 설정 → 터미널 → 기본 터미널 프로필로 이동하여 드롭다운에서 "bash"를 선택하세요.
 
-If you're still having issues, Oh-My-Zsh might be interfering with terminal integration. Try temporarily disabling it:
-- Run `mv ~/.zshrc ~/.zshrc.backup` 
-- Restart VSCode
+여전히 문제가 있다면 Oh-My-Zsh가 터미널 통합을 방해하고 있을 수 있습니다. 다음 방법으로 일시적으로 비활성화해 보세요:
+- `mv ~/.zshrc ~/.zshrc.backup` 실행
+- VSCode 재시작
 
-You can also add `export TERM=xterm-256color` to your shell configuration file to improve compatibility.
+호환성을 높이기 위해 셸 설정 파일에 `export TERM=xterm-256color`를 추가할 수도 있습니다.
 
 #### Windows
 
-PowerShell 7 provides the most reliable experience. Install it from the Microsoft Store, then select it in your Cline settings.
+PowerShell 7이 가장 안정적인 경험을 제공합니다. Microsoft Store에서 설치한 후 Cline 설정에서 선택하세요.
 
-Still seeing problems? Try these solutions:
-- Disable Windows ConPTY: VSCode Settings → Terminal › Integrated: Windows Enable Conpty → uncheck
-- Switch to Command Prompt (cmd.exe) - sometimes simpler shells work better
+여전히 문제가 있나요? 다음 해결 방법을 시도해 보세요:
+- Windows ConPTY 비활성화: VSCode 설정 → 터미널 › Integrated: Windows Enable Conpty → 체크 해제
+- 명령 프롬프트(cmd.exe)로 전환 - 때로는 단순한 셸이 더 잘 작동합니다.
 
 #### Linux
 
-Bash is your most dependable option. Select it in Cline settings if you haven't already.
+Bash가 가장 믿음직한 옵션입니다. 아직 설정하지 않았다면 Cline 설정에서 선택하세요.
 
-Check these common issues:
-- Ensure VSCode has terminal access permissions
-- Temporarily comment out custom prompt configurations in your `.bashrc`
+다음과 같은 일반적인 문제들을 확인해 보세요:
+- VSCode에 터미널 접근 권한이 있는지 확인
+- `.bashrc`에서 커스텀 프롬프트 설정을 일시적으로 주석 처리
 </good_example_of_writing>
 
-This is much more natural to read. Writing this way creates a conversational flow, and bullet points are used idiomatically.
+이것이 훨씬 더 자연스럽게 읽힙니다. 이런 방식으로 글을 쓰면 대화하는 듯한 흐름이 만들어지고, 불렛 포인트도 관용적으로 사용됩니다.
 
-# Using Mintlify Components Idiomatically
+# Mintlify 컴포넌트 관용적으로 사용하기 (Using Mintlify Components Idiomatically)
 
-Mintlify's custom components can transform basic documentation into engaging, scannable content that users actually want to read. Here's how to use them effectively.
+Mintlify의 커스텀 컴포넌트는 기본적인 문서를 사용자가 정말로 읽고 싶어 하는 매력적이고 훑어보기 좋은 콘텐츠로 바꿀 수 있습니다. 효과적인 사용법은 다음과 같습니다.
 
-## Visual Content with Frames
+## Frame을 활용한 시각적 콘텐츠
 
-Videos and images should be wrapped in `<Frame>` components rather than using raw HTML or markdown. This creates consistent styling and proper responsive behavior.
+영상과 이미지는 생(raw) HTML이나 마크다운 대신 `<Frame>` 컴포넌트로 감싸야 합니다. 이렇게 하면 일관된 스타일과 적절한 반응형 동작이 보장됩니다.
 
-For videos, embed them directly rather than linking externally. Users are much more likely to watch a 30-second demonstration than click through to another platform:
+영상의 경우 외부 링크를 거는 대신 직접 임베딩하세요. 사용자는 다른 플랫폼으로 넘어가는 것보다 30초짜리 데모 영상을 직접 보는 것을 훨씬 선호합니다.
 
 ```jsx
 <Frame>
 	<iframe
 		style={{ width: "100%", aspectRatio: "16/9" }}
 		src="https://www.youtube.com/embed/your-video-id"
-		title="Feature demonstration"
+		title="기능 데모"
 		frameBorder="0"
 		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 		allowFullScreen
@@ -212,181 +209,178 @@ For videos, embed them directly rather than linking externally. Users are much m
 </Frame>
 ```
 
-Screenshots work similarly - the frame provides visual polish and consistency:
+스크린샷도 비슷합니다. 프레임(frame)은 시각적인 세련미와 일관성을 제공합니다.
 
 ```jsx
 <Frame>
-	<img src="/path/to/screenshot.png" alt="Descriptive alt text" />
+	<img src="/path/to/screenshot.png" alt="설명적인 대체 텍스트" />
 </Frame>
 ```
 
-## Cards for Navigation and Overview
+## 네비게이션과 개요를 위한 Card
 
-Cards excel at creating scannable overviews that link to detailed documentation. They're perfect for feature listings, getting started guides, or any section where users need to choose their path.
+카드는 상세 문서로 연결되는 훑어보기 좋은 개요를 만드는 데 뛰어납니다. 기능 목록, 시작 가이드 또는 사용자가 경로를 선택해야 하는 섹션에 완벽합니다.
 
-Use the two-column layout for related features:
+관련 기능들에는 2열 레이아웃을 사용하세요:
 
 ```jsx
 <Columns cols={2}>
-  <Card title="Feature Name" icon="relevant-icon" href="/link/to/docs">
-    Brief description that explains what this feature does and why someone would use it.
+  <Card title="기능 이름" icon="relevant-icon" href="/link/to/docs">
+    이 기능이 무엇을 하는지, 왜 사용하는지에 대한 짧은 설명입니다.
   </Card>
   
-  <Card title="Related Feature" icon="another-icon" href="/another/link">
-    Another concise explanation that helps users understand the value proposition.
+  <Card title="관련 기능" icon="another-icon" href="/another/link">
+    사용자가 가치를 이해할 수 있도록 돕는 또 다른 명확한 설명입니다.
   </Card>
 </Columns>
 ```
 
-The key is writing card descriptions that are informative enough to help users decide whether to click through, but concise enough to scan quickly. Each card should answer "what does this do?" and "why would I need this?"
+핵심은 사용자가 클릭할지 말지 결정할 수 있을 만큼 충분히 정보를 주면서도, 빠르게 훑어볼 수 있을 만큼 간결하게 카드 설명을 쓰는 것입니다. 각 카드는 "이게 뭐지?"와 "나한테 왜 필요하지?"에 답해야 합니다.
 
-## Tips and Notes for Context
+## 컨텍스트를 위한 Tip과 Note
 
-Use `<Tip>` components for helpful information that enhances the main content without cluttering it:
+메인 내용을 방해하지 않으면서 보완해주는 유용한 정보에는 `<Tip>` 컴포넌트를 사용하세요:
 
 ```jsx
 <Tip>
-	Pro tip: You can combine multiple @ mentions in a single message to give Cline 
-	comprehensive context about your issue.
+	전문가 팁: 한 메시지 내에 여러 번의 @ 언급을 조합하여 Cline에게 
+	문제에 대한 포괄적인 컨텍스트를 제공할 수 있습니다.
 </Tip>
 ```
 
-`<Note>` components work well for important caveats or technical limitations:
+`<Note>` 컴포넌트는 중요한 주의 사항이나 기술적 제한 사항에 적합합니다:
 
 ```jsx
 <Note>
-	Due to VS Code limitations, some features require specific settings to work properly.
+	VS Code의 제한으로 인해, 일부 기능이 제대로 작동하려면 특정 설정이 필요합니다.
 </Note>
 ```
 
-`<Info>` is also cool:
+`<Info>`도 아주 좋습니다:
 
 <Info>
-	**Quick Fix**: If you're experiencing terminal issues, try switching to a simpler shell like `bash` in the Cline settings.
-	This resolves 90% of terminal integration problems.
+	**빠른 해결**: 터미널 문제가 발생하면 Cline 설정에서 `bash`와 같이 단순한 셸로 전환해 보세요. 
+	이 방법으로 터미널 통합 문제의 90%를 해결할 수 있습니다.
 </Info>
 
-**Never** fall into that awful **Bold Text** - description pattern that we specifically identified as bad writing. The content should flow naturally as connected thoughts rather than feeling like a templated AI response with forced formatting.
+우리가 나쁜 글쓰기 사례로 식별했던 그 끔찍한 **굵은 텍스트** - 설명 패턴은 **절대** 쓰지 마십시오. 강제된 포맷팅이 들어간 템플릿형 AI 답변처럼 느껴지기보다는, 연결된 생각들이 자연스럽게 흐르는 글이 되어야 합니다.
 
+## 불렛 포인트와 순서 있는 목록을 전략적으로 사용하는 시기
 
-## When to Use Bullet Points and Numbered Lists Strategically
+불렛 포인트는 기능적인 목적이 있습니다. 다음과 같은 경우에 사용하십시오:
 
-Bullet points serve functional purposes - use them for:
+**사용자가 특정 순서를 따라야 하는 순차적 행동 또는 문제 해결 단계**:
+1. 익스텐션 설치
+2. VSCode 재시작  
+3. 설정 패널 확인
 
-**Sequential actions or troubleshooting steps** where users need to follow a specific order:
-1. Install the extension
-2. Restart VSCode  
-3. Check the settings panel
+**사용자가 한 가지 방식을 선택해야 하는 관련 옵션 목록**:
+- 가장 안정적인 경험을 위해 PowerShell 7 시도
+- 여전히 문제가 있다면 명령 프롬프트로 전환
+- Linux 호환성을 위해 WSL Bash 사용
 
-**Lists of related options** where users need to choose one approach:
-- Try PowerShell 7 for the most reliable experience
-- Switch to Command Prompt if you're still having issues
-- Use WSL Bash for Linux compatibility
+**문제를 해결할 때 빠르게 훑어봐야 하는 빠른 참조 항목.**
 
-**Quick reference items** that users might need to scan quickly when problem-solving.
+**텍스트 벽이 생겼을 때 시각적 위계 개선** - 이때가 바로 불렛 포인트나 번호 매겨진 목록을 도입할 절호의 기회입니다.
 
-**Improving Visual Hierarchy** when there's a wall of text - that's a good time to introduce bullet points or numbered lists.
-
-Each bulleted item or numbered list should be a discrete action or piece of information that benefits from being visually separated. This is a key weapon you can employ when going for that artwork experience I mentioned earlier. 
+각 불렛 항목이나 번호 매겨진 목록은 시각적으로 분리되었을 때 이득이 있는 별개의 행동이나 정보여야 합니다. 이것은 앞서 언급한 '예술 작품' 같은 경험을 만들 때 사용할 수 있는 핵심 무기입니다.
 
 <good_example_of_bullet_points>
-## Finding and Configuring Terminal Settings
+## 터미널 설정 찾기 및 구성
 
-You can access Cline's terminal settings by clicking the settings icon in the Cline sidebar, then navigating to the Terminal section. These settings control how Cline interacts with your system's terminal.
+Cline 사이드바의 설정 아이콘을 클릭한 후 터미널(Terminal) 섹션으로 이동하여 Cline의 터미널 설정에 접근할 수 있습니다. 이 설정은 Cline이 시스템 터미널과 상호작용하는 방식을 제어합니다.
 
-- The **Default Terminal Profile** setting determines which shell Cline uses for executing commands. If you're experiencing issues, this is usually the first thing to change. I personally keep this set to `bash` on all my systems because it's the most reliable option, even though I use `zsh` for my regular terminal work.
+- **기본 터미널 프로필(Default Terminal Profile)** 설정은 Cline이 명령 실행을 위해 어떤 셸을 사용할지 결정합니다. 문제가 발생하면 가장 먼저 확인해야 할 설정입니다. 나는 개인적으로 일상적인 터미널 작업에는 `zsh`를 쓰더라도, 모든 시스템에서 이 설정만큼은 가장 안정적인 옵션인 `bash`로 유지합니다.
 
-- **Shell Integration Timeout** controls how long Cline waits for the terminal to become ready. The default is 4 seconds, but if you have a heavy shell configuration (lots of plugins, slow startup scripts), you might need to increase this to 10 or even 15 seconds. I've found that WSL environments and SSH connections often need longer timeouts.
+- **셸 통합 타임아웃(Shell Integration Timeout)**은 Cline이 터미널이 준비될 때까지 기다리는 시간을 제어합니다. 기본값은 4초이지만, 셸 설정이 무겁다면(플러그인이 많거나 시작 스크립트가 느린 경우) 이를 10초 또는 15초까지 늘려야 할 수도 있습니다. 경험상 WSL 환경과 SSH 연결에는 더 긴 타임아웃이 필요하곤 합니다.
 
-- The **Enable Aggressive Terminal Reuse** setting determines whether Cline tries to reuse existing terminals even when they're not in the correct directory. When this causes problems (commands running in the wrong directory, virtual environment issues), disabling it creates more terminal instances but ensures each command runs in a clean state.
+- **공격적인 터미널 재사용 활성화(Enable Aggressive Terminal Reuse)** 설정은 Cline이 올바른 디렉토리에 있지 않을 때도 기존 터미널을 재사용할지 여부를 결정합니다. 이로 인해 문제가 발생할 때(잘못된 디렉토리에서 명령 실행, 가상 환경 문제 등) 이 옵션을 끄면 터미널 인스턴스가 더 많이 생성되지만 각 명령이 깨끗한 상태에서 실행되도록 보장합니다.
 
-- **Terminal Output Line Limit** sets how many lines of output Cline will read from commands. The default of 500 lines works for most cases, but you might need to adjust it. For verbose build outputs, increase it. For commands with progress bars that spam thousands of lines, decrease it to around 100 to avoid consuming too many tokens.
+- **터미널 출력 라인 제한(Terminal Output Line Limit)**은 Cline이 명령의 출력에서 몇 줄을 읽을지 설정합니다. 기본값인 500줄은 대부분의 경우에 적합하지만 조정이 필요할 수도 있습니다. 상세한 빌드 출력물에 대해서는 값을 늘리세요. 수천 줄의 로그를 쏟아내는 진행 표시줄(progress bar)이 있는 명령의 경우, 토큰을 너무 많이 소비하지 않도록 100줄 정도로 줄이세요.
 </good_example_of_bullet_points>
 
-## Write Like a Human, Not an AI
+## AI가 아닌 사람처럼 쓰기 (Write Like a Human, Not an AI)
 
-Keep it short and direct. If you can say something in fewer words, do it. Long explanations often confuse more than they help.
+짧고 직접적으로 쓰세요. 더 적은 단어로 말할 수 있다면 그렇게 하세요. 긴 설명은 도움보다 혼란을 줄 때가 더 많습니다.
 
-Use normal sentence lengths. Mix short and long sentences naturally, like you would when talking to someone. Avoid those meandering compound sentences that go on forever.
+평범한 문장 길이를 사용하세요. 다른 사람과 대화할 때처럼 짧은 문장과 긴 문장을 자연스럽게 섞으세요. 끝없이 이어지는 구구절절한 복문은 피하세요.
 
-Cut the corporate speak. Instead of "utilize," say "use." Instead of "in order to," just say "to." Write like you're explaining something to a colleague, not drafting a press release.
+기업적인 말투(corporate speak)를 버리세요. "활용하다(utilize)" 대신 "사용하다(use)"라고 말하세요. "~하기 위하여(in order to)" 대신 그냥 "~하려고(to)"라고 하세요. 보도 자료를 작성하는 것이 아니라 동료에게 무언가를 설명하는 것처럼 쓰세요.
 
-Don't over-explain obvious things. If users are reading documentation, they probably understand basic concepts. Respect their intelligence.
+명확한 것을 과도하게 설명하지 마세요. 사용자가 문서를 읽고 있다면 기본적인 개념은 이미 이해하고 있을 가능성이 큽니다. 그들의 지성을 존중하세요.
 
-## Never use em dashes or emojis
+## 대시(em dash)나 이모지를 절대 사용하지 마세요
 
-That's pretty much it. Never use them. Only AI writes with em dashes or emojis.
+그게 전부입니다. 절대 사용하지 마세요. 대시나 이모지를 써서 글을 쓰는 것은 오직 AI뿐입니다.
 
-# Anthropomorphizing Cline
+# Cline을 의인화하기 (Anthropomorphizing Cline)
 
-When referring to Cline, always call him a "him" not an "it". 
+Cline을 언급할 때는 "그것(it)"이 아니라 **"그(him)"**라고 부르세요.
 
-Bad example:
-- When Cline can’t execute commands or read their output, you lose access to one of its most powerful capabilities.
+나쁜 예시:
+- Cline이 명령을 실행하거나 출력을 읽을 수 없을 때, **그것의** 가장 강력한 기능 중 하나를 사용할 수 없게 됩니다.
 
-Good Example:
+좋은 예시:
+- Cline이 명령을 실행하거나 출력을 읽을 수 없을 때, **그의** 가장 강력한 기능 중 하나를 사용할 수 없게 됩니다.
 
-- When Cline can’t execute commands or read their output, you lose access to one of his most powerful capabilities.
+# 자신의 워크플로우를 공유할 때 "나(I)" 사용하기
 
-# Using "I" when sharing your workflow
+개인적인 터치를 더하는 것은 큰 효과를 발휘합니다. 현재 문서에서도 내가 어떻게 개인적으로 Cline을 사용하는지 개발자 대 개발자로서 공유하기 위해 "나(I)"를 사용한 좋은 사례들이 있습니다. 아주 훌륭한 기법입니다.
 
-Adding a personal touch goes a long way. There are great examples in the docs currently where I use "I" to share how I personally use cline, from dev to dev. It's a great technique.
+# 관련 문서 페이지 상호 링크 걸기
 
-# Crosslinking relevant documentation pages
+문서 작성을 마친 후에는 반드시 상호 링크를 거세요. 관련 문서가 있다면 그냥 링크를 거세요.
 
-Make sure you crosslink when you're done writing the docs. If there are relevant docs, just link to them.
+# 간결함은 위트의 영혼입니다 (Brevity is the soul of wit)
 
-# Brevity is the soul of wit
-
-Don't ramble if you don't need to. Use bullet points and numbered lists. Keep things easy to read.
+필요하지 않다면 횡설수설하지 마세요. 불렛 포인트와 번호 매겨진 목록을 활용하세요. 읽기 쉽게 유지하세요.
 
 <bad_example>
 
-When Cline can't execute commands or read their output, you lose access to one of his most powerful capabilities. Terminal integration problems are frustrating, but they're usually fixable with a few simple changes.
+Cline이 명령을 실행하거나 출력을 읽을 수 없을 때, 사용자는 그의 가장 강력한 역량 중 하나에 대한 접근권을 잃게 됩니다. 터미널 통합 문제는 실망스럽지만, 대개 몇 가지 간단한 변경으로 해결 가능합니다.
 
-## The Most Common Problem: Shell Integration Issues
+## 가장 흔한 문제: 셸 통합 이슈
 
-If you're seeing "Shell integration unavailable" or Cline isn't getting command output, the issue is almost always your shell configuration. Complex shell setups with custom prompts, plugins, and fancy configurations can interfere with VSCode's terminal integration.
+"Shell integration unavailable" 메시지가 보이거나 Cline이 명령 출력을 가져오지 못한다면, 원인은 거의 항상 당신의 셸 설정에 있습니다. 커스텀 프롬프트, 플러그인, 화려한 설정이 포함된 복잡한 셸 구성은 VSCode의 터미널 통합을 방해할 수 있습니다.
 
-**Switch to bash first.** This fixes the problem 90% of the time. Navigate to Cline Settings → Terminal → Default Terminal Profile and select "bash" from the dropdown. Restart VSCode after making this change.
+**먼저 bash로 전환해 보세요.** 이것만으로 문제의 90%가 해결됩니다. Cline 설정 → 터미널 → 기본 터미널 프로필로 이동하여 드롭다운에서 "bash"를 선택하세요. 변경 후 VSCode를 재시작하세요.
 
-Still having issues? Try increasing the shell integration timeout. Go to Cline Settings → Terminal → Shell Integration Timeout and change it from 4 seconds to 10 seconds. Heavy shell configurations need more time to initialize properly.
+여전히 문제가 있나요? 셸 통합 타임아웃을 늘려보세요. Cline 설정 → 터미널 → 셸 통합 타임아웃으로 가서 4초를 10초로 변경하세요. 무거운 셸 설정은 제대로 초기화되는 데 더 많은 시간이 필요합니다.
 
-If commands are running in the wrong directories or you're seeing weird behavior, disable aggressive terminal reuse. In Cline Settings → Terminal, uncheck "Enable aggressive terminal reuse." This creates more terminal instances but ensures each command runs in a clean environment.
+명령이 잘못된 디렉토리에서 실행되거나 이상한 동작이 보인다면, 공격적인 터미널 재사용을 비활성화하세요. Cline 설정 → 터미널에서 "공격적인 터미널 재사용 활성화" 체크를 해제하세요. 이렇게 하면 터미널 인스턴스는 더 많이 생기지만 각 명령이 깨끗한 환경에서 실행되도록 보장합니다.
 
+</bad_example>
 
-</bad_exaxmple>
-
-The first part is total filler, useless to any serious developer. You can tell it's written by a non technical person that doesn't value clean, straightforward information. 
+첫 번째 부분은 완전히 시간 낭비입니다. 진지한 개발자에게는 쓸모없는 내용이죠. 깨끗하고 직접적인 정보의 가치를 모르는 비기술자가 쓴 글임을 알 수 있습니다.
 
 <good_example>
-## Shell Integration Issues
+## 셸 통합 이슈 (Shell Integration Issues)
 
-If you're seeing "Shell integration unavailable" or Cline can't read command output, your shell configuration is interfering with VSCode's terminal integration.
+"Shell integration unavailable" 메시지가 보이거나 Cline이 명령 출력을 읽지 못한다면, 당신의 셸 설정이 VSCode의 터미널 통합을 방해하고 있는 것입니다.
 
-**Switch to bash first.** Go to Cline Settings → Terminal → Default Terminal Profile and select "bash." This fixes 90% of problems.
+**먼저 bash로 전환해 보세요.** Cline 설정 → 터미널 → 기본 터미널 프로필에서 "bash"를 선택하세요. 이것으로 문제의 90%가 해결됩니다.
 
-Still broken? Try these:
-- Increase shell integration timeout to 10 seconds in Cline Settings → Terminal
-- Disable "aggressive terminal reuse" if commands run in wrong directories
-- Restart VSCode after making changes
+여전히 해결되지 않는다면 다음을 시도하세요:
+- Cline 설정 → 터미널에서 셸 통합 타임아웃을 10초로 증가
+- 명령이 잘못된 디렉토리에서 실행된다면 "공격적인 터미널 재사용 활성화" 비활성화
+- 변경 후 VSCode 재시작
 </good_example>
 
-The good version cuts straight to the problem and solution. No hand-holding, no emotional language about frustration, just the facts: what's wrong, how to fix it, what to try next. Respects that developers want information, not sympathy.RetryClaude can make mistakes. Please double-check responses.
+좋은 버전은 곧바로 문제와 해결책으로 들어갑니다. 불필요한 감정적 언어나 친절한 척하는 말투 없이 팩트(무엇이 잘못되었고, 어떻게 고치며, 다음엔 무엇을 시도할지)만 전달합니다. 개발자가 원하는 것은 동정이 아니라 정보라는 점을 존중하는 것입니다.
 
-ALWAYS consider your audience. And your audience is devs who don't want their time wasted. Give them the info. I cannot stress this enough. Use bullet points and numbered lists. Prose is good, but every word should actually mean something to the dev reading it.
+**항상** 독자를 고려하세요. 여러분의 독자는 자신의 시간이 낭비되는 것을 원치 않는 개발자들입니다. 그들에게 정보를 주세요. 아무리 강조해도 지나치지 않습니다. 불렛 포인트와 번호 매겨진 목록을 사용하세요. 산문도 좋지만, 모든 단어는 그것을 읽는 개발자에게 실제로 의미가 있어야 합니다.
 
-# Lastly, before you start writing docs
+# 마지막으로, 문서 작성을 시작하기 전에
 
-1. Internalize these guidelines. I mean it. 
+1. 이 가이드라인을 내면화하세요. 진심입니다.
 
-2. Read `docs/docs.json` and get an understanding of the structure of the docs. This will come in handly at the end when you're doing a final pass so you can cross link to docs where relevant.
+2. `docs/docs.json`을 읽고 문서의 구조를 파악하세요. 마지막 단계에서 관련 문서로 상호 링크를 걸 때 큰 도움이 될 것입니다.
 
-3. Read some good examples that I personally wrote and am proud of:
+3. 내가 직접 작성했고 자랑스럽게 여기는 좋은 사례들을 읽어보세요:
 
 - docs/features/slash-commands/workflows.mdx
 - docs/features/slash-commands/new-task.mdx
 - docs/features/at-mentions/overview.mdx
 - docs/features/drag-and-drop.mdx
 
-4. If the user specifies any other instructions make sure you follow them.
+4. 사용자가 지정한 다른 지침이 있다면 반드시 따르세요.

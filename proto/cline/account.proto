@@ -8,32 +8,32 @@ option go_package = "github.com/cline/grpc-go/cline";
 option java_multiple_files = true;
 option java_package = "bot.cline.proto";
 
-// Service for account-related operations
+// 계정 관련 작업을 위한 서비스
 service AccountService {
-  // Handles the user clicking the login link in the UI.
-  // Generates a secure nonce for state validation, stores it in secrets,
-  // and opens the authentication URL in the external browser.
+  // UI에서 사용자가 로그인 링크를 클릭했을 때의 처리를 담당합니다.
+  // 상태 검증을 위한 보안 논스(nonce)를 생성하여 비밀 저장소에 저장하고,
+  // 외부 브라우저에서 인증 URL을 엽니다.
   rpc accountLoginClicked(EmptyRequest) returns (String);
 
-  // Handles the user clicking the logout button in the UI.
-  // Clears API keys and user state.
+  // UI에서 사용자가 로그아웃 버튼을 클릭했을 때의 처리를 담당합니다.
+  // API 키와 사용자 상태를 초기화합니다.
   rpc accountLogoutClicked(EmptyRequest) returns (Empty);
 
-  // Subscribe to auth status update events (when authentication state changes)
+  // 인증 상태 업데이트 이벤트(인증 상태가 변경될 때)를 구독합니다.
   rpc subscribeToAuthStatusUpdate(EmptyRequest) returns (stream AuthState);
 
-  // Handles authentication state changes from the Firebase context.
-  // Updates the user info in global state and returns the updated value.
+  // Firebase 컨텍스트의 인증 상태 변경을 처리합니다.
+  // 글로벌 상태의 사용자 정보를 업데이트하고 업데이트된 값을 반환합니다.
   rpc authStateChanged(AuthStateChangedRequest) returns (AuthState);
 
-  // Fetches all user credits data
-  // (balance, usage transactions, payment transactions)
+  // 사용자의 모든 크레딧 데이터를 가져옵니다.
+  // (잔액, 사용 내역, 결제 내역 등)
   rpc getUserCredits(EmptyRequest) returns (UserCreditsData);
 
   rpc getOrganizationCredits(GetOrganizationCreditsRequest) returns (OrganizationCreditsData);
 
-  // Fetches all user organizations data
-  // Returns a list of UserOrganization objects
+  // 사용자의 모든 조직 데이터를 가져옵니다.
+  // UserOrganization 객체의 목록을 반환합니다.
   rpc getUserOrganizations(EmptyRequest) returns (UserOrganizationsResponse);
 
   rpc setUserOrganization(UserOrganizationUpdateRequest) returns (Empty);
@@ -44,14 +44,14 @@ service AccountService {
 
   rpc hicapAuthClicked(EmptyRequest) returns (Empty);
 
-  // Returns a link the webview can use to redirect back to the user's IDE.
+  // 웹뷰가 사용자의 IDE로 다시 리다이렉트하는 데 사용할 수 있는 링크를 반환합니다.
   rpc getRedirectUrl(EmptyRequest) returns (String);
 
-  // OpenAI Codex OAuth authentication
-  // Starts the OAuth flow and opens browser for user to sign in with ChatGPT Plus/Pro
+  // OpenAI Codex OAuth 인증
+  // OAuth 흐름을 시작하고 사용자가 ChatGPT Plus/Pro로 로그인할 수 있도록 브라우저를 엽니다.
   rpc openAiCodexSignIn(EmptyRequest) returns (Empty);
 
-  // Signs out of OpenAI Codex and clears stored credentials
+  // OpenAI Codex에서 로그아웃하고 저장된 자격 증명을 초기화합니다.
   rpc openAiCodexSignOut(EmptyRequest) returns (Empty);
 }
 
@@ -64,13 +64,13 @@ message AuthState {
   optional UserInfo user = 1;
 }
 
-// User's information
+// 사용자 정보
 message UserInfo {
   string uid = 1;
   optional string display_name = 2;
   optional string email = 3;
   optional string photo_url = 4;
-  optional string app_base_url = 5; // Cline app base URL
+  optional string app_base_url = 5; // Cline 앱 기본 URL
 }
 
 message UserOrganization {
@@ -78,7 +78,7 @@ message UserOrganization {
   string member_id = 2;
   string name = 3;
   string organization_id = 4;
-  repeated string roles = 5; // ["admin", "member", "owner"]
+  repeated string roles = 5; // 예: ["admin", "member", "owner"]
 }
 
 message UserOrganizationsResponse {

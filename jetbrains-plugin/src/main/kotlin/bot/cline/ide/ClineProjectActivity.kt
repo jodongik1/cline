@@ -18,36 +18,41 @@ import java.io.File
 import java.io.InputStreamReader
 import java.net.ServerSocket
 
+/**
+ * ClineProjectActivity: 프로젝트가 열릴 때 실행되는 진입점 클래스.
+ * 핵심 역할: Node.js 백엔드 프로세스 실행 및 gRPC 통신 브릿지 설정.
+ */
 class ClineProjectActivity : ProjectActivity {
 
     companion object {
         private val LOG = Logger.getInstance(ClineProjectActivity::class.java)
 
-        /** Allocated ProtoBus port for the current session (0 = not yet allocated). */
+        /** 현재 세션에서 할당된 ProtoBus(gRPC) 포트 (0이면 아직 할당되지 않음) */
         @Volatile
         var protobusPort: Int = 0
             private set
 
-        /** WebSocket port is always ProtoBus + 1. */
+        /** WebSocket 포트는 항상 ProtoBus 포트 + 1로 설정됨 */
         val websocketPort: Int get() = protobusPort + 1
 
-        /** Latch that signals when cline-core is ready (port is set). */
+        /** cline-core 백엔드가 준비되었음을 알리는 래치(Latch) */
         val ready = java.util.concurrent.CountDownLatch(1)
 
-        /** Reference to the cline-core process for cleanup on shutdown. */
+        /** IntelliJ 종료 시 백엔드 프로세스를 함께 종료하기 위한 참조 */
         @Volatile
         var coreProcess: Process? = null
             private set
     }
 
     /**
-     * Resolves the full path to the `node` binary.
-     * IntelliJ JVM process may not inherit shell PATH (especially with nvm),
-     * so we probe known locations before falling back to the bare `node` command.
+     * 시스템에서 Node.js 실행 파일(binary)의 전체 경로를 탐색합니다.
+     * IntelliJ JVM은 셸의 PATH를 상속받지 못하는 경우가 많아 NVM 등을 포함한 여러 경로를 직접 확인합니다.
      */
     private fun resolveNodePath(): String {
+        // 1. 환경 변수 CLINE_NODE_PATH 확인
         System.getenv("CLINE_NODE_PATH")?.takeIf { File(it).exists() }?.let { return it }
 
+        // 2. 현재 사용자의 기본 셸(bash, zsh 등)에서 'which node' 실행 시도
         try {
             val shell = System.getenv("SHELL") ?: "/bin/bash"
             val which = ProcessBuilder(shell, "-l", "-c", "which node")
@@ -55,8 +60,9 @@ class ClineProjectActivity : ProjectActivity {
                 .start()
             val path = which.inputStream.bufferedReader().readLine()?.trim()
             if (!path.isNullOrBlank() && File(path).exists()) return path
-        } catch (_: Exception) { /* continue */ }
+        } catch (_: Exception) { /* 무시 및 다음 시도 */ }
 
+        // 3. NVM(Node Version Manager) 설치 경로 탐색
         val home = System.getProperty("user.home") ?: ""
         val nvmDir = File(home, ".nvm/versions/node")
         if (nvmDir.isDirectory) {
@@ -68,68 +74,57 @@ class ClineProjectActivity : ProjectActivity {
             if (nodeBin != null) return nodeBin.absolutePath
         }
 
+        // 4. 일반적인 OS 표준 설치 경로 확인
         for (candidate in listOf("/opt/homebrew/bin/node", "/usr/local/bin/node", "/usr/bin/node")) {
             if (File(candidate).exists()) return candidate
         }
 
+        // 5. 모두 실패 시 시스템 명령어로 'node' 호출 시도
         return "node"
     }
 
+    /**
+     * 실행할 핵심 백엔드 스크립트(cline-core.js)의 경로를 찾습니다.
+     */
     private fun resolveCoreScriptPath(): String? {
+        // 환경 변수 우선 확인
         System.getenv("CLINE_CORE_PATH")?.takeIf { File(it).exists() }?.let {
-            LOG.info("cline-core.js found via CLINE_CORE_PATH: $it")
+            LOG.info("CLINE_CORE_PATH를 통해 cline-core.js 발견: $it")
             return it
         }
 
         val pluginDescriptor = PluginManagerCore.getPlugin(PluginId.getId("bot.cline.ide"))
         val pluginDir = pluginDescriptor?.pluginPath?.toFile()
-        LOG.info("Plugin descriptor: $pluginDescriptor, pluginDir: ${pluginDir?.absolutePath}")
 
         if (pluginDir != null) {
-            // Log directory contents for debugging
-            LOG.info("pluginDir contents: ${pluginDir.listFiles()?.map { it.name }}")
-
-            // Direct path: pluginDir/dist-standalone/cline-core.js
+            // 번들링된 배포판 경로 확인
             val bundled = File(pluginDir, "dist-standalone/cline-core.js")
             if (bundled.exists()) {
-                LOG.info("cline-core.js found at: ${bundled.absolutePath}")
                 return bundled.absolutePath
             }
 
-            // Check inside lib/ directory (some plugin layouts nest differently)
-            val libDir = File(pluginDir, "lib")
-            if (libDir.isDirectory) {
-                LOG.info("lib/ contents: ${libDir.listFiles()?.map { it.name }}")
-            }
-
-            // Walk up directory tree for sandbox dev layout or source tree
+            // 개발 환경(샌드박스 등)에서 상위 디렉터리를 탐색하며 위치 확인
             var dir: File? = pluginDir.parentFile
             repeat(8) {
                 if (dir == null) return@repeat
                 val candidate = File(dir, "dist-standalone/cline-core.js")
                 if (candidate.exists()) {
-                    LOG.info("cline-core.js found (parent walk): ${candidate.absolutePath}")
                     return candidate.absolutePath
                 }
                 dir = dir?.parentFile
             }
-
-            LOG.warn("cline-core.js NOT found. Searched: ${bundled.absolutePath} and parent dirs up to ${pluginDir.absolutePath}")
-        } else {
-            LOG.warn("Could not resolve plugin directory for bot.cline.ide")
         }
-
         return null
     }
 
     /**
-     * Terminates processes occupying the specified port.
-     * Uses lsof on macOS/Linux and netstat on Windows.
+     * 지정된 포트를 점유하고 있는 기존 프로세스를 강제로 종료합니다. (포트 충돌 방지)
      */
     private fun killProcessOnPort(port: Int) {
         try {
             val os = System.getProperty("os.name").lowercase()
             if (os.contains("win")) {
+                // Windows: netstat와 taskkill 사용
                 val result = ProcessBuilder("cmd", "/c", "netstat -ano | findstr :$port")
                     .redirectErrorStream(true).start()
                     .inputStream.bufferedReader().readText().trim()
@@ -138,102 +133,72 @@ class ClineProjectActivity : ProjectActivity {
                     .filter { it.all(Char::isDigit) && it != "0" }
                     .toSet()
                 pids.forEach { pid ->
-                    LOG.info("Killing process on port $port (PID: $pid)")
                     ProcessBuilder("taskkill", "/F", "/PID", pid).start().waitFor()
                 }
             } else {
+                // macOS/Linux: lsof와 kill 사용
                 val result = ProcessBuilder("lsof", "-ti", ":$port")
                     .redirectErrorStream(true).start()
                     .inputStream.bufferedReader().readText().trim()
                 if (result.isNotBlank()) {
                     result.lines().filter { it.isNotBlank() }.forEach { pid ->
-                        LOG.info("Killing process on port $port (PID: $pid)")
                         ProcessBuilder("kill", pid).start().waitFor()
                     }
                     Thread.sleep(500)
                 }
             }
         } catch (e: Exception) {
-            LOG.warn("Failed to kill process on port $port: ${e.message}")
+            LOG.warn("포트 $port의 프로세스 종료 실패: ${e.message}")
         }
     }
 
     /**
-     * Ensures better-sqlite3 native module matches the user's Node.js ABI version.
-     * Runs prebuild-install to download the correct prebuilt binary if needed.
+     * 바이너리 종속성(예: better-sqlite3)이 사용자의 Node.js 버전(ABI)과 맞는지 확인하고,
+     * 필요 시 npm/npx를 사용하여 자동으로 재설치(rebuild)합니다.
      */
     private fun ensureNativeModules(nodePath: String, coreDir: File) {
         val betterSqliteDir = File(coreDir, "node_modules/better-sqlite3")
-        if (!betterSqliteDir.isDirectory) {
-            LOG.info("better-sqlite3 not found in bundle, skipping native module check")
-            return
-        }
+        if (!betterSqliteDir.isDirectory) return
 
         try {
-            // Get current Node.js ABI version
+            // 현재 시스템 Node.js의 ABI 버전 확인
             val abiProc = ProcessBuilder(nodePath, "-e", "process.stdout.write(process.versions.modules)")
                 .redirectErrorStream(true).start()
             val runtimeAbi = abiProc.inputStream.bufferedReader().readText().trim()
             abiProc.waitFor()
-            LOG.info("Runtime Node.js ABI version: $runtimeAbi")
 
-            // Check if existing .node binary matches
             val nodeFile = File(betterSqliteDir, "build/Release/better_sqlite3.node")
             if (nodeFile.exists()) {
+                // 기존 모듈이 정상적으로 로드되는지 테스트
                 val checkScript = "try{require('${nodeFile.absolutePath.replace("\\","/")}');process.stdout.write('OK')}catch(e){process.stdout.write('MISMATCH')}"
                 val checkProc = ProcessBuilder(nodePath, "-e", checkScript)
                     .redirectErrorStream(true).start()
                 val checkResult = checkProc.inputStream.bufferedReader().readText().trim()
                 checkProc.waitFor()
 
-                if (checkResult == "OK") {
-                    LOG.info("better-sqlite3 native module ABI matches, no rebuild needed")
-                    return
-                }
-                LOG.info("better-sqlite3 ABI mismatch detected, downloading matching prebuilt...")
-            } else {
-                LOG.info("better-sqlite3 native binary not found, downloading prebuilt...")
+                if (checkResult == "OK") return // ABI 일치 시 종료
             }
 
-            // npx/npm use "#!/usr/bin/env node" shebang — need node's bin dir in PATH
+            // 일치하지 않을 경우 npx prebuild-install 시도
             val nodeBinDir = File(nodePath).parent
             val envWithNode = mapOf("PATH" to "$nodeBinDir:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin")
-
-            // Run prebuild-install to download the correct prebuilt binary
             val npxPath = File(nodeBinDir, "npx").absolutePath
-            val prebuildProc = ProcessBuilder(
-                npxPath, "prebuild-install", "--runtime", "napi", "--target", runtimeAbi
-            )
+            
+            val prebuildProc = ProcessBuilder(npxPath, "prebuild-install", "--runtime", "napi", "--target", runtimeAbi)
             prebuildProc.directory(betterSqliteDir)
             prebuildProc.environment().putAll(envWithNode)
             prebuildProc.redirectErrorStream(true)
             val process = prebuildProc.start()
-            val output = process.inputStream.bufferedReader().readText()
-            val exitCode = process.waitFor()
-
-            if (exitCode == 0) {
-                LOG.info("prebuild-install succeeded for ABI $runtimeAbi")
-            } else {
-                LOG.warn("prebuild-install failed (exit=$exitCode): $output")
-                // Try npm rebuild as last resort
+            if (process.waitFor() != 0) {
+                // 실패 시 npm rebuild로 재시도
                 val npmPath = File(nodeBinDir, "npm").absolutePath
-                LOG.info("Attempting npm rebuild better-sqlite3...")
                 val rebuildProc = ProcessBuilder(npmPath, "rebuild", "better-sqlite3")
                 rebuildProc.directory(coreDir)
                 rebuildProc.environment().putAll(envWithNode)
-                rebuildProc.redirectErrorStream(true)
-                val rebuildProcess = rebuildProc.start()
-                val rebuildOutput = rebuildProcess.inputStream.bufferedReader().readText()
-                val rebuildExit = rebuildProcess.waitFor()
-                if (rebuildExit == 0) {
-                    LOG.info("npm rebuild better-sqlite3 succeeded")
-                } else {
-                    LOG.warn("npm rebuild also failed (exit=$rebuildExit): $rebuildOutput")
-                    LOG.warn("SQLite lock manager may not work — multi-instance locking disabled")
-                }
+                rebuildProc.start().waitFor()
             }
         } catch (e: Exception) {
-            LOG.warn("Native module check failed (non-fatal): ${e.message}")
+            LOG.warn("네이티브 모듈 확인 중 비정상 종료 (치명적이지 않음): ${e.message}")
         }
     }
 
@@ -244,20 +209,23 @@ class ClineProjectActivity : ProjectActivity {
                 .createNotification(content, NotificationType.ERROR)
                 .notify(project)
         } catch (_: Exception) {
-            // Notification group not registered yet, fall back to LOG
             LOG.error(content)
         }
     }
 
+    /**
+     * 프로젝트가 열릴 때 실행되는 실제 로직. (프로젝트 액티비티의 메인 루틴)
+     */
     override suspend fun execute(project: Project) {
         withContext(Dispatchers.IO) {
             try {
-                // Allocate random port for host bridge gRPC server
+                // 1. 가교 역할을 할 Kotlin gRPC 서버용 포트 할당
                 val hostBridgePort = ServerSocket(0).use { it.localPort }
 
                 val healthStatusManager = HealthStatusManager()
                 healthStatusManager.setStatus("", HealthCheckResponse.ServingStatus.SERVING)
 
+                // 2. gRPC 서비스들(파일 입출력, 환경 변수, 창 관리 등) 등록 및 시작
                 ServerBuilder.forPort(hostBridgePort)
                     .addService(healthStatusManager.healthService)
                     .addService(EnvServiceImpl())
@@ -267,12 +235,13 @@ class ClineProjectActivity : ProjectActivity {
                     .build()
                     .start()
 
-                LOG.info("Kotlin gRPC Host Bridge started on port $hostBridgePort")
+                LOG.info("Kotlin gRPC 호스트 브릿지가 $hostBridgePort 포트에서 시작되었습니다.")
 
-                // ProtoBus port (fixed at 26040 to match webview WebSocket hardcoded port 26041)
+                // 3. 하드코딩된 ProtoBus 포트 설정 (Webview 포트와의 동기화 때문)
                 val allocatedProtobusPort = 26040
                 protobusPort = allocatedProtobusPort
-                // Kill leftover processes on BOTH ports (gRPC + WebSocket)
+                
+                // 기존 좀비 프로세스 정리
                 killProcessOnPort(allocatedProtobusPort)
                 killProcessOnPort(allocatedProtobusPort + 1)
 
@@ -280,23 +249,20 @@ class ClineProjectActivity : ProjectActivity {
 
                 if (coreScriptFile != null && File(coreScriptFile).exists()) {
                     val nodePath = resolveNodePath()
-                    LOG.info("Node.js path: $nodePath")
 
-                    // Ensure native modules match the user's Node.js version (run in background
-                    // to avoid blocking cline-core startup — SQLite has a non-fatal fallback)
+                    // 백그라운드에서 네이티브 모듈(better-sqlite3) 호환성 체크 실행
                     Thread {
                         ensureNativeModules(nodePath, File(coreScriptFile).parentFile)
                     }.start()
 
+                    // 4. Node.js 프로세스 실행 설정
                     val processBuilder = ProcessBuilder(nodePath, coreScriptFile)
-
                     val environment = processBuilder.environment()
                     environment["HOST_BRIDGE_ADDRESS"] = "127.0.0.1:$hostBridgePort"
                     environment["DEV_WORKSPACE_FOLDER"] = project.basePath ?: ""
                     environment["PROTOBUS_PORT"] = allocatedProtobusPort.toString()
 
-                    // IntelliJ JVM has minimal PATH (/usr/bin:/bin:/usr/sbin:/sbin).
-                    // Resolve the user's full shell PATH so cline-core can find binaries like rg, git, etc.
+                    // 현재 시스템의 셸 PATH를 추출하여 백엔드 프로세스에 전달 (rg, git 등을 찾기 위해 필요)
                     try {
                         val shell = System.getenv("SHELL") ?: "/bin/bash"
                         val pathProc = ProcessBuilder(shell, "-l", "-c", "echo \$PATH")
@@ -305,16 +271,11 @@ class ClineProjectActivity : ProjectActivity {
                         pathProc.waitFor()
                         if (!shellPath.isNullOrBlank()) {
                             environment["PATH"] = shellPath
-                            LOG.info("Resolved shell PATH for cline-core: $shellPath")
                         }
                     } catch (e: Exception) {
-                        LOG.warn("Failed to resolve shell PATH: ${e.message}")
-                        // Fallback: append common binary locations to existing PATH
+                        // 실패 시 기본 경로들을 추가하여 백업
                         val currentPath = environment["PATH"] ?: ""
-                        val extraPaths = listOf(
-                            "/opt/homebrew/bin", "/usr/local/bin",
-                            File(nodePath).parent  // node's bin directory (for npm, npx)
-                        ).joinToString(":")
+                        val extraPaths = listOf("/opt/homebrew/bin", "/usr/local/bin").joinToString(":")
                         environment["PATH"] = "$extraPaths:$currentPath"
                     }
 
@@ -322,40 +283,40 @@ class ClineProjectActivity : ProjectActivity {
                     val process = processBuilder.start()
                     coreProcess = process
 
-                    // Register JVM shutdown hook to kill cline-core when IntelliJ exits
+                    // 5. IntelliJ 종료 시 백엔드 프로세스를 강제 종료하도록 훅 등록
                     Runtime.getRuntime().addShutdownHook(Thread {
                         try {
                             if (process.isAlive) {
-                                LOG.info("Shutdown hook: killing cline-core (PID: ${process.pid()})")
+                                LOG.info("종료 훅: cline-core 백엔드 종료 중 (PID: ${process.pid()})")
                                 process.destroyForcibly()
                             }
-                        } catch (_: Exception) { /* best-effort cleanup */ }
+                        } catch (_: Exception) { }
                     })
 
-                    LOG.info("Node.js core backend started (PID: ${process.pid()}, ProtoBus: $allocatedProtobusPort, WS: ${allocatedProtobusPort + 1})")
+                    LOG.info("Node.js 핵심 백엔드가 시작되었습니다. (PID: ${process.pid()})")
 
-                    // Signal that cline-core is starting (port is allocated)
+                    // 준비 완료 신호 전송
                     ready.countDown()
 
+                    // 프로세스의 로그(stdout/stderr)를 IDE 로그 창에 출력
                     Thread {
                         val reader = BufferedReader(InputStreamReader(process.inputStream))
                         reader.forEachLine { line ->
-                            LOG.info("[cline-core] $line")
+                            LOG.info("[cline-core 백엔드] $line")
                         }
-                        // If the reader loop ends, the process exited
                         val exitCode = process.waitFor()
-                        LOG.warn("[cline-core] Process exited with code $exitCode")
+                        LOG.warn("[cline-core 백엔드] 프로세스가 종료 코드 $exitCode 로 종료되었습니다.")
                     }.start()
 
                 } else {
-                    val msg = "Cline: Could not find cline-core.js. Please set CLINE_CORE_PATH or rebuild with 'node esbuild.mjs --standalone'."
+                    val msg = "Cline: cline-core.js를 찾을 수 없습니다. 빌드 상태를 확인해 주세요."
                     LOG.error(msg)
                     notifyError(project, msg)
                 }
 
             } catch (e: Exception) {
-                LOG.error("Cline bridge initialization failed", e)
-                notifyError(project, "Cline initialization failed: ${e.message}")
+                LOG.error("Cline 브릿지 초기화 중 치명적 오류 발생", e)
+                notifyError(project, "Cline 초기화 실패: ${e.message}")
             }
         }
     }

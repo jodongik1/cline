@@ -154,7 +154,10 @@ const RuleRow: React.FC<{
 						className="mx-1"
 						disabled={isDisabled}
 						key={rulePath}
-						onClick={() => toggleRule(rulePath, !enabled)}
+						onCheckedChange={(checked) => {
+							console.log("[RuleRow] onCheckedChange:", { rulePath, checked })
+							toggleRule(rulePath, checked)
+						}}
 						title={isDisabled ? "This rule is required and cannot be disabled" : undefined}
 					/>
 					<Button

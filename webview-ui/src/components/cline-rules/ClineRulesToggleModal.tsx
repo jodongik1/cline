@@ -390,6 +390,7 @@ const ClineRulesToggleModal: React.FC = () => {
 
 	// Handle toggle for skills
 	const toggleSkill = (isGlobal: boolean, skillPath: string, enabled: boolean) => {
+		console.log("[toggleSkill] called:", { isGlobal, skillPath, enabled })
 		FileServiceClient.toggleSkill(
 			ToggleSkillRequest.create({
 				skillPath,
@@ -398,6 +399,7 @@ const ClineRulesToggleModal: React.FC = () => {
 			}),
 		)
 			.then((response) => {
+				console.log("[toggleSkill] response:", response)
 				if (response.globalSkillsToggles) {
 					setGlobalSkillsToggles(response.globalSkillsToggles)
 				}
@@ -412,7 +414,7 @@ const ClineRulesToggleModal: React.FC = () => {
 				}
 			})
 			.catch((error) => {
-				console.error("Error toggling skill:", error)
+				console.error("[toggleSkill] error:", error)
 			})
 	}
 

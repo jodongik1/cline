@@ -1,39 +1,39 @@
-# Hotfix Release
+# 핫픽스 릴리스 (Hotfix Release)
 
-Create a hotfix release by cherry-picking specific commits from main onto the latest release tag.
+main 브랜치에서 특정 커밋들을 체리픽(cherry-pick)하여 최신 릴리스 태그에 적용하고 핫픽스 릴리스를 생성합니다.
 
-## Overview
+## 개요 (Overview)
 
-This workflow helps you:
-1. Select specific commits from main to include in a hotfix
-2. Create a release notes commit on main (changelog + version bump)
-3. Cherry-pick everything onto the latest release tag
-4. Tag and push the new release
+이 워크플로우는 다음 과정을 도와줍니다:
+1. 핫픽스에 포함할 특정 커밋들을 main에서 선택
+2. main 브랜치에 릴리스 노트 커밋 생성 (변경 이력 업데이트 + 버전 올림)
+3. 모든 내용을 최신 릴리스 태그로 체리픽
+4. 새로운 릴리스 태그 생성 및 푸시(push)
 
-## Step 1: Setup and Gather Information
+## 1단계: 설정 및 정보 수집 (Setup and Gather Information)
 
-First, ensure we're on main and up to date:
+먼저, main 브랜치로 이동하여 최신 상태로 업데이트합니다:
 
 ```bash
 git checkout main && git pull origin main
 ```
 
-Get the latest release tag:
+최신 릴리스 태그를 가져옵니다:
 
 ```bash
 git tag --sort=-v:refname | head -1
 ```
 
-## Step 2: Present Commits Since Last Release
+## 2단계: 마지막 릴리스 이후의 커밋 제시 (Present Commits Since Last Release)
 
-Show all commits on main since the last release tag:
+마지막 릴리스 태그 이후 main 브랜치에 쌓인 모든 커밋을 표시합니다:
 
 ```bash
 LAST_TAG=$(git tag --sort=-v:refname | head -1)
 git log ${LAST_TAG}..HEAD --oneline --format="%h %s (%an)"
 ```
 
-Also get the commit messages already on the tag (to identify previously cherry-picked commits). Note: Run these as separate commands to avoid shell parsing issues with parentheses in author names:
+또한 해당 태그에 이미 포함된 커밋 메시지들도 가져옵니다 (이전에 체리픽된 커밋 식별용). 주의: 작성자 이름에 괄호가 포함된 경우 셸 파싱 문제를 피하기 위해 별도의 명령으로 실행하십시오:
 
 ```bash
 LAST_TAG=$(git tag --sort=-v:refname | head -1)
@@ -44,144 +44,144 @@ PREV_TAG=$(git tag --sort=-v:refname | head -2 | tail -1)
 git log $PREV_TAG..$LAST_TAG --oneline --format="%s"
 ```
 
-**Present the list** to the user in a numbered format with commit hash, subject, and author. For any commits whose subject line already appears in the tag's history (previously cherry-picked in an earlier hotfix) or are "Release Notes" commits, add `(already in previous hotfix)` or `(release notes - skip)` after them so the user knows to skip those.
+커밋 해시, 제목, 작성자가 포함된 번호 매겨진 목록을 **사용자에게 제시**합니다. 해당 태그의 히스토리에 이미 제목이 존재하는 커밋(이전 핫픽스에서 이미 체리픽됨)이나 "Release Notes" 커밋의 경우, 뒤에 `(이전 핫픽스에 이미 포함됨)` 또는 `(릴리스 노트 - 건너뜀)`을 추가하여 사용자가 건너뛸 수 있도록 안내합니다.
 
-Ask which commits to include in the hotfix.
+핫픽스에 포함할 커밋이 무엇인지 묻습니다.
 
-Use the ask_followup_question tool to let the user specify which commits they want (by number or hash).
+`ask_followup_question` 도구를 사용하여 사용자가 원하는 커밋(번호 또는 해시)을 지정하게 합니다.
 
-## Step 3: Analyze Selected Commits
+## 3단계: 선택된 커밋 분석 (Analyze Selected Commits)
 
-For each selected commit:
-1. Get the full commit message: `git show --no-patch --format="%B" <hash>`
-2. Get the diff to understand the change: `git show <hash> --stat`
-3. Find the associated PR if any: `gh pr list --search "<hash>" --state merged --json number,title --jq '.[0]'`
+선택된 각 커밋에 대해:
+1. 전체 커밋 메시지 확인: `git show --no-patch --format="%B" <hash>`
+2. 변경 사항 이해를 위한 diff 확인: `git show <hash> --stat`
+3. 연관된 PR 확인 (있는 경우): `gh pr list --search "<hash>" --state merged --json number,title --jq '.[0]'`
 
-Build a mental model of what these changes do for the changelog.
+변경 이력(changelog) 작성을 위해 이 변경 사항들이 무엇을 하는지 머릿속으로 정리합니다.
 
-## Step 4: Determine New Version Number
+## 4단계: 새 버전 번호 결정 (Determine New Version Number)
 
-Parse the current version from package.json and the last tag:
+package.json과 마지막 태그에서 현재 버전을 파악합니다:
 
 ```bash
 LAST_TAG=$(git tag --sort=-v:refname | head -1)
-echo "Last release: $LAST_TAG"
+echo "마지막 릴리스: $LAST_TAG"
 cat package.json | grep '"version"'
 ```
 
-Hotfixes always increment the patch version (e.g., 3.40.0 -> 3.40.1, or 3.40.1 -> 3.40.2).
+핫픽스는 항상 패치 버전(patch version)을 올립니다 (예: 3.40.0 -> 3.40.1, 또는 3.40.1 -> 3.40.2).
 
-**Ask the user to confirm the new version number.**
+**사용자에게 새 버전 번호를 확인해달라고 요청합니다.**
 
-## Step 5: Create Release Notes Commit on Main
+## 5단계: Main 브랜치에 릴리스 노트 커밋 생성 (Create Release Notes Commit on Main)
 
-On the main branch, create a commit that updates:
+main 브랜치에서 다음 사항들을 업데이트하는 커밋을 생성합니다:
 
-1. **CHANGELOG.md** - Add a new section for the hotfix version at the top:
+1. **CHANGELOG.md** - 맨 위에 핫픽스 버전을 위한 새 섹션을 추가합니다:
    ```markdown
    ## [3.40.1]
 
-   - Description of fix 1
-   - Description of fix 2
+   - 수정 사항 1에 대한 설명
+   - 수정 사항 2에 대한 설명
    ```
 
-   Write clear, user-friendly descriptions based on your analysis of the commits.
+   커밋 분석 내용을 바탕으로 명확하고 사용자 친화적인 설명을 작성합니다.
 
-2. **package.json** - Update the version field to the new version
+2. **package.json** - version 필드를 새 버전으로 업데이트합니다.
 
-3. No changelog-entry file cleanup is needed. Contributors do not create changelog-entry files in this repo.
+3. changelog-entry 파일 정리 작업은 필요하지 않습니다. 이 프로젝트의 기여자는 changelog-entry 파일을 생성하지 않습니다.
 
-**Skip running `npm run install:all`** - release automation handles lockfile consistency as needed.
+**`npm run install:all` 실행은 건너뜁니다.** - 릴리스 자동화 도구가 필요에 따라 lockfile 일관성을 처리합니다.
 
-Commit with message format: `v{VERSION} Release Notes (hotfix)`
+커밋 메시지 형식: `v{VERSION} Release Notes (hotfix)`
 
-In the commit body, mention:
-- This is for a hotfix release
-- List the cherry-picked commits that will be included
+커밋 본문에는 다음 내용을 언급합니다:
+- 이것이 핫픽스 릴리스임을 명시
+- 포함될 체리픽된 커밋 목록
 
 ```bash
 git add CHANGELOG.md package.json
 git commit -m "v3.40.1 Release Notes (hotfix)
 
-Hotfix release including:
-- <commit1-hash>: <description>
-- <commit2-hash>: <description>
+다음 내용을 포함한 핫픽스 릴리스:
+- <commit1-hash>: <설명>
+- <commit2-hash>: <설명>
 "
 ```
 
-Push to main:
+main 브랜치에 푸시합니다:
 
 ```bash
 git push origin main
 ```
 
-## Step 6: Build the Hotfix on the Tag
+## 6단계: 태그에서 핫픽스 빌드 (Build the Hotfix on the Tag)
 
-Checkout the last release tag (detached HEAD):
+마지막 릴리스 태그로 체크아웃합니다 (detached HEAD):
 
 ```bash
 LAST_TAG=$(git tag --sort=-v:refname | head -1)
 git checkout $LAST_TAG
 ```
 
-Cherry-pick the selected commits in order:
+선택한 커밋들을 순서대로 체리픽합니다:
 
 ```bash
 git cherry-pick <commit1-hash>
 git cherry-pick <commit2-hash>
-# ... etc
+# ... 등등
 ```
 
-Finally, cherry-pick the release notes commit you just pushed to main:
+마지막으로, 방금 main에 푸시한 릴리스 노트 커밋을 체리픽합니다:
 
 ```bash
-# Get the hash of the release notes commit (should be HEAD of main)
+# 릴리스 노트 커밋의 해시를 가져옵니다 (main의 HEAD여야 함)
 RELEASE_NOTES_COMMIT=$(git rev-parse main)
 git cherry-pick $RELEASE_NOTES_COMMIT
 ```
 
-## Step 7: Tag and Push
+## 7단계: 태그 생성 및 푸시 (Tag and Push)
 
-After all cherry-picks are applied successfully:
+모든 체리픽이 성공적으로 적용된 후:
 
 ```bash
-# Tag the new release
+# 새 릴리스 태그 생성
 git tag v{VERSION}
 
-# Push the tag to remote
+# 원격 저장소에 태그 푸시
 git push origin v{VERSION}
 ```
 
-## Step 8: Return to Main and Summary
+## 8단계: Main 브랜치 복귀 및 요약 (Return to Main and Summary)
 
-Return to main branch:
+main 브랜치로 돌아갑니다:
 
 ```bash
 git checkout main
 ```
 
-**Copy a Slack announcement message to clipboard** with the version and PR links for each included fix:
+각 수정 사항에 대한 버전과 PR 링크를 포함한 **Slack 공지 메시지를 클립보드에 복사**합니다:
 
 ```
-VS Code Hotfix v{VERSION} Published
+VS Code Hotfix v{VERSION} 게시됨
 
-- Description of fix 1 https://github.com/cline/cline/pull/{PR_NUMBER}
-- Description of fix 2 https://github.com/cline/cline/pull/{PR_NUMBER}
+- 수정 사항 1에 대한 설명 https://github.com/cline/cline/pull/{PR_NUMBER}
+- 수정 사항 2에 대한 설명 https://github.com/cline/cline/pull/{PR_NUMBER}
 ```
 
-Present a final summary:
-- New version: v{VERSION}
-- Tag pushed: yes
-- Commits included: (list them)
-- Slack message copied to clipboard: yes
+최종 요약을 제시합니다:
+- 새 버전: v{VERSION}
+- 태그 푸시 여부: 예
+- 포함된 커밋: (목록)
+- Slack 메시지 클립보드 복사 여부: 예
 
-Remind the user to:
-1. Manually trigger the publish release GitHub Action at: https://github.com/cline/cline/actions/workflows/publish.yml (paste `v{VERSION}` as the tag)
-2. Post the Slack message to announce the hotfix
+사용자에게 다음 사항을 상기시킵니다:
+1. https://github.com/cline/cline/actions/workflows/publish.yml 에서 `v{VERSION}` 태그를 입력하여 'publish release' GitHub Action을 수동으로 실행하십시오.
+2. 핫픽스 소식을 알리기 위해 Slack 메시지를 게시하십시오.
 
-## Important Notes
+## 중요 주의 사항 (Important Notes)
 
-- This workflow does NOT create a release branch - only tags
-- The release notes commit goes to main first, then gets cherry-picked to the tag
-- This keeps main's history accurate while allowing hotfix releases from tags
-- If cherry-pick conflicts occur, resolve them before continuing
+- 이 워크플로우는 릴리스 브랜치를 생성하지 않고 태그만 생성합니다.
+- 릴리스 노트 커밋은 main에 먼저 반영된 후 태그로 체리픽됩니다.
+- 이는 main의 히스토리를 정확하게 유지하면서 태그 기반의 핫픽스 릴리스를 가능하게 합니다.
+- 체리픽 충돌이 발생하면 계속하기 전에 충돌을 해결하십시오.
